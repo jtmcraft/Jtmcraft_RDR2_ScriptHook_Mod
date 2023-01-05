@@ -19,6 +19,8 @@ void ScriptMain() {
 		controller.giveMoney();
 		controller.saveCoordinates();
 		controller.toggleDevMode();
+		controller.changeWeather();
+		controller.updateVampire();
 
 		bool shouldSave = false;
 		auto now = chrono::steady_clock::now();

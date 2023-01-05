@@ -1,7 +1,11 @@
 #include "Api.h"
 
 Vector3 Api::getPlayerCoords() {
-	return ENTITY::GET_ENTITY_COORDS(getPlayerPed(), true, 0);
+	return getEntityCoords(getPlayerPed());
+}
+
+Vector3 Api::getEntityCoords(Entity entity) {
+	return ENTITY::GET_ENTITY_COORDS(entity, true, 0);
 }
 
 Player Api::getPlayer() {
@@ -77,7 +81,7 @@ void Api::drawText(const char* text, float x, float y) {
 
 void Api::drawRectangle(float x, float y, float width, float height) {
 	float fX = x + width / 2;
-	float fY = y + height / 2;
+	float fY = (y + height / 2);
 
 	GRAPHICS::DRAW_RECT(fX, fY, width, height, 0, 0, 0, 190, true, 0);
 }
@@ -86,7 +90,7 @@ void Api::reportCrime(Hash crime) {
 	PURSUIT::_0xF60386770878A98F(getPlayer(), crime, 0, 0, true);
 }
 
-void Api::requestModel(Hash modelHash, bool b) {
+void Api::loadModel(Hash modelHash, bool b) {
 	STREAMING::REQUEST_MODEL(modelHash, false);
 	while (!STREAMING::HAS_MODEL_LOADED(modelHash)) {
 		WAIT(0);
@@ -120,4 +124,117 @@ bool Api::isPlayerOnMount() {
 
 Ped Api::getPlayerMount() {
 	return PED::GET_MOUNT(getPlayerPed());
+}
+
+void Api::setSnowLevel(float level) {
+	GAMEPLAY::_0xF6BEE7E80EC5CA40(level);
+}
+
+void Api::setSnowCoverage(int coverage) {
+	if (coverage < 0) {
+		coverage = 0;
+	}
+
+	if (coverage > 2) {
+		coverage = 2;
+	}
+
+	GRAPHICS::_0xF02A9C330BBFC5C7(coverage);
+}
+
+void Api::setWeather(const char* weatherType) {
+	GAMEPLAY::CLEAR_OVERRIDE_WEATHER();
+	GAMEPLAY::SET_WEATHER_TYPE(GAMEPLAY::GET_HASH_KEY(_strdup(weatherType)), 0, 1, 0, 0.0, 0);
+	GAMEPLAY::CLEAR_WEATHER_TYPE_PERSIST();
+}
+
+int Api::randInt(int a, int b) {
+	return GAMEPLAY::GET_RANDOM_INT_IN_RANGE(a, b);
+}
+
+Hash Api::getHash(char* key) {
+	return GAMEPLAY::GET_HASH_KEY(key);
+}
+
+Vector3 Api::findLocationNearPlayer(float distance) {
+	Vector3 playerLocation = getPlayerCoords();
+	float playerHeading = getPlayerHeading();
+	Vector3 nearLocation = OBJECT::_GET_OBJECT_OFFSET_FROM_COORDS(
+		playerLocation.x, playerLocation.y, playerLocation.z,
+		playerHeading,
+		distance, distance, 0
+	);
+
+	PATHFIND::GET_SAFE_COORD_FOR_PED(nearLocation.x, nearLocation.y, nearLocation.z, true, &nearLocation, 16);
+
+	return nearLocation;
+}
+
+Ped Api::createPed(Hash model, Vector3 spawnLocation) {
+	return PED::CREATE_PED(model, spawnLocation.x, spawnLocation.y, spawnLocation.z, 0.0, 1, 0, 0, 0);
+}
+
+Blip Api::addBlip(Hash blipHash, Ped ped) {
+	return RADAR::_0x23F74C2FDA6E7C61(blipHash, ped);
+}
+
+void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords, char* blipStyle) {
+	PED::SET_PED_VISIBLE(ped, true);
+	AI::TASK_TURN_PED_TO_FACE_COORD(ped, turnToCoords.x, turnToCoords.y, turnToCoords.z, 0);
+	PED::SET_PED_RELATIONSHIP_GROUP_HASH(ped, getHash(relationship));
+	addBlip(getHash(blipStyle), ped);
+
+	if (isHostileToPlayer) {
+		AI::TASK_COMBAT_PED(ped, getPlayerPed(), 0, 16);
+	}
+}
+
+Ped Api::spawnHostilePedNearPlayer(char* model) {
+	Vector3 playerLocation = getPlayerCoords();
+	Vector3 spawnLocation = findLocationNearPlayer(10);
+	Hash skin = getHash(model);
+
+	loadModel(skin, true);
+	Ped spawned = createPed(skin, spawnLocation);
+
+	addPedToWorld(spawned, "REL_CRIMINALS", true, playerLocation, "BLIP_STYLE_ENEMY");
+	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
+
+	return spawned;
+}
+
+bool Api::isPaused() {
+	return UI::IS_PAUSE_MENU_ACTIVE();
+}
+
+int Api::getGameHour() {
+	return TIME::GET_CLOCK_HOURS();
+}
+
+int Api::getGameMinute() {
+	return TIME::GET_CLOCK_MINUTES();
+}
+
+int Api::getGameSecond() {
+	return TIME::GET_CLOCK_SECONDS();
+}
+
+void Api::addExplosion(Vector3 coords) {
+	FIRE::ADD_EXPLOSION(coords.x, coords.y, coords.z, 27, 1.0f, true, false, 1.0f);
+}
+
+void Api::setEntityHealth(Entity entity, int health) {
+	ENTITY::SET_ENTITY_HEALTH(entity, health, 0);
+}
+
+float Api::distanceBetween(Vector3 a, Vector3 b) {
+	return GAMEPLAY::GET_DISTANCE_BETWEEN_COORDS(a.x, a.y, a.z, b.x, b.y, b.z, false);
+}
+
+void Api::deletePed(Ped ped) {
+	PED::DELETE_PED(&ped);
+}
+
+bool Api::isEntityDead(Entity entity) {
+	return ENTITY::IS_ENTITY_DEAD(entity);
 }

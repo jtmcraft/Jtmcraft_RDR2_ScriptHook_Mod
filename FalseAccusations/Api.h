@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+#include <string>
 #include "../../inc/types.h"
 #include "../../inc/natives.h"
 
@@ -14,11 +16,13 @@ private:
 	void displaySubTitle(const char* text);
 	void playNotification();
 	void playInformational();
-	void requestModel(Hash modelHash, bool b);
+	void loadModel(Hash modelHash, bool b);
+	Ped createPed(Hash skin, Vector3 location);
 
 public:
 	void debugText(const char* text);
 	Vector3 getPlayerCoords();
+	Vector3 getEntityCoords(Entity entity);
 	float getPlayerHeading();
 	int getMaxWantedLevel();
 	int getPlayerWantedLevel();
@@ -32,4 +36,22 @@ public:
 	void togglePlayerInvincible();
 	bool isPlayerOnMount();
 	Ped getPlayerMount();
+	void setWeather(const char* weatherType);
+	void setSnowLevel(float level);
+	void setSnowCoverage(int coverage);
+	int randInt(int a, int b);
+	Hash getHash(char* key);
+	Blip addBlip(Hash blipHash, Ped ped);
+	Vector3 findLocationNearPlayer(float distance);
+	void addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords, char* blipStyle);
+	Ped spawnHostilePedNearPlayer(char* model);
+	bool isPaused();
+	int getGameHour();
+	int getGameMinute();
+	int getGameSecond();
+	void addExplosion(Vector3 coords);
+	void setEntityHealth(Entity entity, int health);
+	float distanceBetween(Vector3 a, Vector3 b);
+	void deletePed(Ped ped);
+	bool isEntityDead(Entity entity);
 };
