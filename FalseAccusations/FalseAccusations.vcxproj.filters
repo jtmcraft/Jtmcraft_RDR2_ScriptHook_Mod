@@ -6,10 +6,14 @@
     <ClCompile Include="script.cpp" />
     <ClCompile Include="Api.cpp" />
     <ClCompile Include="ScriptController.cpp" />
-    <ClCompile Include="ScriptCrimeManager.cpp" />
+    <ClCompile Include="ScriptCrimeController.cpp" />
     <ClCompile Include="ScriptDataManager.cpp" />
     <ClCompile Include="ScriptDataModel.cpp" />
     <ClCompile Include="ScriptLogger.cpp" />
+    <ClCompile Include="ScriptWeather.cpp" />
+    <ClCompile Include="ScriptVampire.cpp" />
+    <ClCompile Include="ScriptInfoPanel.cpp" />
+    <ClCompile Include="ScriptDevMode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="script.h" />
@@ -28,10 +32,14 @@
     </ClInclude>
     <ClInclude Include="Api.h" />
     <ClInclude Include="ScriptController.h" />
-    <ClInclude Include="ScriptCrimeManager.h" />
+    <ClInclude Include="ScriptCrimeController.h" />
     <ClInclude Include="ScriptDataManager.h" />
     <ClInclude Include="ScriptDataModel.h" />
     <ClInclude Include="ScriptLogger.h" />
+    <ClInclude Include="ScriptWeather.h" />
+    <ClInclude Include="ScriptVampire.h" />
+    <ClInclude Include="ScriptInfoPanel.h" />
+    <ClInclude Include="ScriptDevMode.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

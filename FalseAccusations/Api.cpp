@@ -148,10 +148,6 @@ void Api::setWeather(const char* weatherType) {
 	GAMEPLAY::CLEAR_WEATHER_TYPE_PERSIST();
 }
 
-int Api::randInt(int a, int b) {
-	return GAMEPLAY::GET_RANDOM_INT_IN_RANGE(a, b);
-}
-
 Hash Api::getHash(char* key) {
 	return GAMEPLAY::GET_HASH_KEY(key);
 }
@@ -191,7 +187,7 @@ void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vec
 
 Ped Api::spawnHostilePedNearPlayer(char* model) {
 	Vector3 playerLocation = getPlayerCoords();
-	Vector3 spawnLocation = findLocationNearPlayer(10);
+	Vector3 spawnLocation = findLocationNearPlayer(20);
 	Hash skin = getHash(model);
 
 	loadModel(skin, true);
@@ -219,6 +215,10 @@ int Api::getGameSecond() {
 	return TIME::GET_CLOCK_SECONDS();
 }
 
+void Api::setGameTime(int hours, int minutes, int seconds) {
+	TIME::SET_CLOCK_TIME(hours, minutes, seconds);
+}
+
 void Api::addExplosion(Vector3 coords) {
 	FIRE::ADD_EXPLOSION(coords.x, coords.y, coords.z, 27, 1.0f, true, false, 1.0f);
 }
@@ -237,4 +237,24 @@ void Api::deletePed(Ped ped) {
 
 bool Api::isEntityDead(Entity entity) {
 	return ENTITY::IS_ENTITY_DEAD(entity);
+}
+
+void Api::addSnowBlanket(int coverage) {
+	setWeather("SNOW");
+	setSnowLevel(1);
+	setSnowCoverage(coverage);
+}
+
+void Api::removeSnowBlanket(char* replacementWeather) {
+	setWeather(replacementWeather);
+	setSnowLevel(-1);
+	setSnowCoverage(0);
+}
+
+bool Api::detectHeadShot(Ped victim) {
+	int bone;
+
+	PED::GET_PED_LAST_DAMAGE_BONE(victim, &bone);
+
+	return bone == 21030;
 }

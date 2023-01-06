@@ -1,26 +1,41 @@
 #pragma once
 
 #include "Api.h"
-#include "ScriptDataManager.h"
-#include "ScriptLogger.h"
-#include "ScriptCrimeManager.h"
 #include "ScriptController.h"
+#include "ScriptCrimeController.h"
+#include "ScriptDataManager.h"
+#include "ScriptDevMode.h"
+#include "ScriptInfoPanel.h"
+#include "ScriptLogger.h"
+#include "ScriptVampire.h"
+#include "ScriptWeather.h"
 #include "script.h"
 
 using namespace std;
 
 void ScriptMain() {
+	srand((unsigned int) time(NULL));
+
 	ScriptController controller = ScriptController();
+	ScriptDevMode devMode = ScriptDevMode();
+	ScriptDataManager dataManager = ScriptDataManager();
+	ScriptCrimeController crimeManager = ScriptCrimeController();
+	ScriptInfoPanel infoPanel = ScriptInfoPanel();
+	ScriptLogger logger = ScriptLogger();
+	ScriptVampire vampire = ScriptVampire();
+	ScriptWeather weather = ScriptWeather();
+	
+	crimeManager.setDataModel(dataManager.read());
+	devMode.setLogger(logger);
+
 	auto startAutoSave = chrono::steady_clock::now();
 	auto startFalseAccusation = chrono::steady_clock::now();
 
 	while (true) {
-		controller.drawUserInterface();
-		controller.giveMoney();
-		controller.saveCoordinates();
-		controller.toggleDevMode();
-		controller.changeWeather();
-		controller.updateVampire();
+		devMode.tick();
+		infoPanel.tick(crimeManager.getDataModel());
+		vampire.tick();
+		weather.tick();
 
 		bool shouldSave = false;
 		auto now = chrono::steady_clock::now();

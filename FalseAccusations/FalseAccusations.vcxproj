@@ -12,10 +12,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="script.cpp" />
     <ClCompile Include="ScriptController.cpp" />
-    <ClCompile Include="ScriptCrimeManager.cpp" />
+    <ClCompile Include="ScriptCrimeController.cpp" />
     <ClCompile Include="ScriptDataManager.cpp" />
     <ClCompile Include="ScriptDataModel.cpp" />
+    <ClCompile Include="ScriptDevMode.cpp" />
+    <ClCompile Include="ScriptInfoPanel.cpp" />
     <ClCompile Include="ScriptLogger.cpp" />
+    <ClCompile Include="ScriptVampire.cpp" />
+    <ClCompile Include="ScriptWeather.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\main.h" />
@@ -26,10 +30,14 @@
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="script.h" />
     <ClInclude Include="ScriptController.h" />
-    <ClInclude Include="ScriptCrimeManager.h" />
+    <ClInclude Include="ScriptCrimeController.h" />
     <ClInclude Include="ScriptDataManager.h" />
     <ClInclude Include="ScriptDataModel.h" />
+    <ClInclude Include="ScriptDevMode.h" />
+    <ClInclude Include="ScriptInfoPanel.h" />
     <ClInclude Include="ScriptLogger.h" />
+    <ClInclude Include="ScriptVampire.h" />
+    <ClInclude Include="ScriptWeather.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8D82F34A-1D64-465B-84B1-37F89AD3D20B}</ProjectGuid>

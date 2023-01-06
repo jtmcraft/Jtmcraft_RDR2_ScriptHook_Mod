@@ -39,7 +39,6 @@ public:
 	void setWeather(const char* weatherType);
 	void setSnowLevel(float level);
 	void setSnowCoverage(int coverage);
-	int randInt(int a, int b);
 	Hash getHash(char* key);
 	Blip addBlip(Hash blipHash, Ped ped);
 	Vector3 findLocationNearPlayer(float distance);
@@ -49,9 +48,13 @@ public:
 	int getGameHour();
 	int getGameMinute();
 	int getGameSecond();
+	void setGameTime(int hours, int minutes, int seconds);
 	void addExplosion(Vector3 coords);
 	void setEntityHealth(Entity entity, int health);
 	float distanceBetween(Vector3 a, Vector3 b);
 	void deletePed(Ped ped);
 	bool isEntityDead(Entity entity);
+	void addSnowBlanket(int coverage);
+	void removeSnowBlanket(char* replacementWeather);
+	bool detectHeadShot(Ped victim);
 };

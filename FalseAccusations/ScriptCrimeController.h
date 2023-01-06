@@ -20,13 +20,13 @@ const Hash CRIMES[] = {
 	0x5098CC5A
 };
 
-class ScriptCrimeManager
+class ScriptCrimeController
 {
 private:
 	ScriptDataModel dataModel;
 
 public:
-	ScriptCrimeManager();
+	ScriptCrimeController();
 	ScriptDataModel getDataModel();
 	void setDataModel(ScriptDataModel dataModel);
 	Hash randomCrime();
