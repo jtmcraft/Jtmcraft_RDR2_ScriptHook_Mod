@@ -4,7 +4,6 @@ ScriptVampire::ScriptVampire() {
 	api = Api();
 	vampire = NULL;
 	okToSpawnVampire = true;
-	vampireHeadshotHandled = false;
 }
 
 bool ScriptVampire::isVampireOutOfRange() {
@@ -33,20 +32,19 @@ void ScriptVampire::tick() {
 	gameHour = api.getGameHour();
 	bool isAlive = vampire != NULL && !api.isEntityDead(vampire);
 
-	if (vampire != NULL && !vampireHeadshotHandled && api.detectHeadShot(vampire)) {
-		vampireHeadshotHandled = true;
-		api.toast("You headshot the vampire.");
-	}
-
 	if (isAlive) {
-		if (api.detectHeadShot(vampire)) {
-			api.toast("You scored a headshot against the vampire.");
-		}
-
 		api.setWeather("FOG");
 	}
+	else {
+		if (vampire != NULL && api.detectHeadShot(vampire)) {
+			api.toast("You scored a headshot against the vampire.");
+		}
+		api.setWeather("SUNNY");
 
-	if (gameHour > 6) {
+		vampire = NULL;
+	}
+
+	if (gameHour > 5) {
 		if (isAlive) {
 			api.addExplosion(api.getEntityCoords(vampire));
 			api.setEntityHealth(vampire, 0);

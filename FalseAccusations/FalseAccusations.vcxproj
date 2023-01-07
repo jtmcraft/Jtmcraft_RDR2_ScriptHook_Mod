@@ -11,12 +11,9 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="script.cpp" />
-    <ClCompile Include="ScriptController.cpp" />
     <ClCompile Include="ScriptCrimeController.cpp" />
-    <ClCompile Include="ScriptDataManager.cpp" />
     <ClCompile Include="ScriptDataModel.cpp" />
     <ClCompile Include="ScriptDevMode.cpp" />
-    <ClCompile Include="ScriptInfoPanel.cpp" />
     <ClCompile Include="ScriptLogger.cpp" />
     <ClCompile Include="ScriptVampire.cpp" />
     <ClCompile Include="ScriptWeather.cpp" />
@@ -29,12 +26,9 @@
     <ClInclude Include="Api.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="script.h" />
-    <ClInclude Include="ScriptController.h" />
     <ClInclude Include="ScriptCrimeController.h" />
-    <ClInclude Include="ScriptDataManager.h" />
     <ClInclude Include="ScriptDataModel.h" />
     <ClInclude Include="ScriptDevMode.h" />
-    <ClInclude Include="ScriptInfoPanel.h" />
     <ClInclude Include="ScriptLogger.h" />
     <ClInclude Include="ScriptVampire.h" />
     <ClInclude Include="ScriptWeather.h" />

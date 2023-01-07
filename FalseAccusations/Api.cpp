@@ -49,6 +49,10 @@ char* Api::createString(const char* text) {
 	return GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", _strdup(text));
 }
 
+int Api::randInt(int a, int b) {
+	return GAMEPLAY::GET_RANDOM_INT_IN_RANGE(a, b);
+}
+
 void Api::debugText(const char* text) {
 	UI::SET_TEXT_COLOR_RGBA(255, 128, 0, 0);
 	UI::SET_TEXT_SCALE(0.33, 0.33);
@@ -237,6 +241,10 @@ void Api::deletePed(Ped ped) {
 
 bool Api::isEntityDead(Entity entity) {
 	return ENTITY::IS_ENTITY_DEAD(entity);
+}
+
+bool Api::isPedDeadOrDying(Ped ped) {
+	return PED::IS_PED_DEAD_OR_DYING(ped, true);
 }
 
 void Api::addSnowBlanket(int coverage) {

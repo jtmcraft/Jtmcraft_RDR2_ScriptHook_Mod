@@ -6,7 +6,7 @@ ScriptWeather::ScriptWeather() {
 }
 
 void ScriptWeather::addSnowBlanket(int coverage) {
-	api.setWeather("SNOW");
+	api.setWeather("SNOWLIGHT");
 	api.setSnowLevel(1);
 	api.setSnowCoverage(coverage);
 }
@@ -31,5 +31,9 @@ void ScriptWeather::toggleWinterBlanket() {
 void ScriptWeather::tick() {
 	if (IsKeyJustUp(VK_KEY_K)) {
 		toggleWinterBlanket();
+	}
+
+	if (winterBlanket) {
+		api.setWeather("SNOWLIGHT");
 	}
 }

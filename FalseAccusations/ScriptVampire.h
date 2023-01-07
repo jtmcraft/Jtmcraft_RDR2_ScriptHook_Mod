@@ -10,7 +10,6 @@ private:
 	Api api;
 	Ped vampire;
 	bool okToSpawnVampire;
-	bool vampireHeadshotHandled;
 
 	void spawnVampire();
 	bool isVampireOutOfRange();

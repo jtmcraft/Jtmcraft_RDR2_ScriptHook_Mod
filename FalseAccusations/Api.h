@@ -20,6 +20,7 @@ private:
 	Ped createPed(Hash skin, Vector3 location);
 
 public:
+	int randInt(int a, int b);
 	void debugText(const char* text);
 	Vector3 getPlayerCoords();
 	Vector3 getEntityCoords(Entity entity);
@@ -54,6 +55,7 @@ public:
 	float distanceBetween(Vector3 a, Vector3 b);
 	void deletePed(Ped ped);
 	bool isEntityDead(Entity entity);
+	bool isPedDeadOrDying(Ped ped);
 	void addSnowBlanket(int coverage);
 	void removeSnowBlanket(char* replacementWeather);
 	bool detectHeadShot(Ped victim);
