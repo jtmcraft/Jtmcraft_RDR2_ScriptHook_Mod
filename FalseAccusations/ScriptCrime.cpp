@@ -1,8 +1,8 @@
-#include "ScriptCrimeController.h"
+#include "ScriptCrime.h"
 
 using namespace std;
 
-ScriptCrimeController::ScriptCrimeController() {
+ScriptCrime::ScriptCrime() {
 	api = Api();
 
 	crimes[0x68134DC7] = "Arson";
@@ -33,73 +33,73 @@ ScriptCrimeController::ScriptCrimeController() {
 	startFalseAccusation = chrono::steady_clock::now();
 }
 
-Hash ScriptCrimeController::randomCrime() {
+Hash ScriptCrime::randomCrime() {
 	int dim = (sizeof(CRIMES) / sizeof(CRIMES[0]));
 
 	return CRIMES[api.randInt(0, dim - 1)];
 }
 
-char* ScriptCrimeController::getCrime(Hash crime) {
+char* ScriptCrime::getCrime(Hash crime) {
 	return crimes[crime];
 }
 
-void ScriptCrimeController::setDefaults() {
+void ScriptCrime::setDefaults() {
 	timeToWait = 3480;
 	timeElapsed = 0;
 	chance = 10;
 }
 
-double ScriptCrimeController::getTimeToWait()
+double ScriptCrime::getTimeToWait()
 {
 	return timeToWait;
 }
 
-double ScriptCrimeController::getTimeElapsed() {
+double ScriptCrime::getTimeElapsed() {
 	return timeElapsed;
 }
 
-int ScriptCrimeController::getChance()
+int ScriptCrime::getChance()
 {
 	return chance;
 }
 
-void ScriptCrimeController::setTimeToWait(double timeToWait)
+void ScriptCrime::setTimeToWait(double timeToWait)
 {
 	this->timeToWait = timeToWait;
 }
 
-void ScriptCrimeController::setTimeElapsed(double timeElapsed) {
+void ScriptCrime::setTimeElapsed(double timeElapsed) {
 	this->timeElapsed = timeElapsed;
 }
 
-void ScriptCrimeController::addTimeElapsed(double delta) {
+void ScriptCrime::addTimeElapsed(double delta) {
 	timeElapsed += delta;
 }
 
-void ScriptCrimeController::setChance(int chance)
+void ScriptCrime::setChance(int chance)
 {
 	this->chance = chance;
 }
 
-void ScriptCrimeController::increaseChance() {
+void ScriptCrime::increaseChance() {
 	timeToWait /= 2;
 	chance += 5;
 	timeElapsed = 0;
 }
 
-void ScriptCrimeController::write() {
+void ScriptCrime::write() {
 	dataFile.open(fileName, ios_base::out);
 	dataFile << timeToWait << " " << timeElapsed << " " << chance;
 	dataFile.close();
 }
 
-void ScriptCrimeController::read() {
+void ScriptCrime::read() {
 	dataFile.open(fileName, ios_base::in);
 	dataFile >> timeToWait >> timeElapsed >> chance;
 	dataFile.close();
 }
 
-void ScriptCrimeController::printInfo() {
+void ScriptCrime::printInfo() {
 	stringstream msg;
 	Vector3 coords = api.getPlayerCoords();
 	float heading = api.getPlayerHeading();
@@ -111,7 +111,7 @@ void ScriptCrimeController::printInfo() {
 	api.drawText(msg.str().c_str(), 0.05, 0.05);
 }
 
-bool ScriptCrimeController::tryToFalselyAccusePlayer() {
+bool ScriptCrime::tryToFalselyAccusePlayer() {
 	int roll = api.randInt(1, 100);
 	char msg[100];
 
@@ -120,9 +120,7 @@ bool ScriptCrimeController::tryToFalselyAccusePlayer() {
 
 	if (roll < chance) {
 		Hash crime = randomCrime();
-		char toastStr[100];
-		sprintf_s(toastStr, "Someone falsely accused you of %s.", getCrime(crime));
-		api.toast(toastStr);
+		api.toast((string("Someone falsely accused you of ").append(getCrime(crime)).append(".")).c_str());
 		WAIT(2000);
 		api.reportCrime(crime);
 
@@ -132,7 +130,7 @@ bool ScriptCrimeController::tryToFalselyAccusePlayer() {
 	return false;
 }
 
-void ScriptCrimeController::handleFalseAccusation(double elapsedFalseAccusation, bool shouldSave) {
+void ScriptCrime::handleFalseAccusation(double elapsedFalseAccusation, bool shouldSave) {
 	timeElapsed += elapsedFalseAccusation;
 
 	if (timeElapsed >= timeToWait) {
@@ -153,7 +151,7 @@ void ScriptCrimeController::handleFalseAccusation(double elapsedFalseAccusation,
 	}
 }
 
-void ScriptCrimeController::tick() {
+void ScriptCrime::tick() {
 	printInfo();
 
 	bool shouldSave = false;

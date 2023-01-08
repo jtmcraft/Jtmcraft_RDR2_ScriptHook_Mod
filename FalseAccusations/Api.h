@@ -17,10 +17,11 @@ private:
 	void playNotification();
 	void playInformational();
 	void loadModel(Hash modelHash, bool b);
-	Ped createPed(Hash skin, Vector3 location);
+	Ped createPed(Hash skin, Vector3 location, bool onGround);
 
 public:
 	int randInt(int a, int b);
+	float randFloat(float a, float b);
 	void debugText(const char* text);
 	Vector3 getPlayerCoords();
 	Vector3 getEntityCoords(Entity entity);
@@ -42,9 +43,14 @@ public:
 	void setSnowCoverage(int coverage);
 	Hash getHash(char* key);
 	Blip addBlip(Hash blipHash, Ped ped);
-	Vector3 findLocationNearPlayer(float distance);
+	Vector3 findLocationRelativeToPlayer(float distance, float a, float b);
 	void addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords, char* blipStyle);
-	Ped spawnHostilePedNearPlayer(char* model);
+	float groundAt(Vector3 location);
+	Ped spawnRelativeToPlayer(char* model, float distance, float a, float b);
+	int createGroup();
+	void setPedGroupMember(Ped ped, int groupId);
+	void setPedGroupLeader(Ped ped, int groupId);
+	void givePedWeapon(Ped ped, Hash weaponHash, int ammo);
 	bool isPaused();
 	int getGameHour();
 	int getGameMinute();

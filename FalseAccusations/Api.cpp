@@ -53,6 +53,10 @@ int Api::randInt(int a, int b) {
 	return GAMEPLAY::GET_RANDOM_INT_IN_RANGE(a, b);
 }
 
+float Api::randFloat(float a, float b) {
+	return GAMEPLAY::GET_RANDOM_FLOAT_IN_RANGE(a, b);
+}
+
 void Api::debugText(const char* text) {
 	UI::SET_TEXT_COLOR_RGBA(255, 128, 0, 0);
 	UI::SET_TEXT_SCALE(0.33, 0.33);
@@ -156,13 +160,13 @@ Hash Api::getHash(char* key) {
 	return GAMEPLAY::GET_HASH_KEY(key);
 }
 
-Vector3 Api::findLocationNearPlayer(float distance) {
+Vector3 Api::findLocationRelativeToPlayer(float distance, float a, float b) {
 	Vector3 playerLocation = getPlayerCoords();
 	float playerHeading = getPlayerHeading();
 	Vector3 nearLocation = OBJECT::_GET_OBJECT_OFFSET_FROM_COORDS(
 		playerLocation.x, playerLocation.y, playerLocation.z,
 		playerHeading,
-		distance, distance, 0
+		distance + randFloat(a, b), distance + randFloat(a, b), 0
 	);
 
 	PATHFIND::GET_SAFE_COORD_FOR_PED(nearLocation.x, nearLocation.y, nearLocation.z, true, &nearLocation, 16);
@@ -170,8 +174,16 @@ Vector3 Api::findLocationNearPlayer(float distance) {
 	return nearLocation;
 }
 
-Ped Api::createPed(Hash model, Vector3 spawnLocation) {
-	return PED::CREATE_PED(model, spawnLocation.x, spawnLocation.y, spawnLocation.z, 0.0, 1, 0, 0, 0);
+Ped Api::createPed(Hash model, Vector3 spawnLocation, bool onGround) {
+	float x, y, z;
+
+	x = spawnLocation.x;
+	y = spawnLocation.y;
+	z = onGround ? groundAt(spawnLocation) : spawnLocation.z;
+
+	Ped created = PED::CREATE_PED(model, x, y, z, 0.0, 1, 0, 0, 0);
+
+	return created;
 }
 
 Blip Api::addBlip(Hash blipHash, Ped ped) {
@@ -189,18 +201,43 @@ void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vec
 	}
 }
 
-Ped Api::spawnHostilePedNearPlayer(char* model) {
+float Api::groundAt(Vector3 location) {
+	float z;
+
+	GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(location.x, location.y, 500, &z, false);
+
+	return z;
+}
+
+Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b) {
 	Vector3 playerLocation = getPlayerCoords();
-	Vector3 spawnLocation = findLocationNearPlayer(20);
+	Vector3 spawnLocation = findLocationRelativeToPlayer(distance, a, b);
 	Hash skin = getHash(model);
 
 	loadModel(skin, true);
-	Ped spawned = createPed(skin, spawnLocation);
+	Ped spawned = createPed(skin, spawnLocation, true);
 
 	addPedToWorld(spawned, "REL_CRIMINALS", true, playerLocation, "BLIP_STYLE_ENEMY");
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
 
 	return spawned;
+}
+
+int Api::createGroup() {
+	return PED::CREATE_GROUP(0);
+}
+
+void Api::setPedGroupLeader(Ped ped, int groupId) {
+	PED::SET_PED_AS_GROUP_LEADER(ped, groupId, 0);
+}
+
+void Api::setPedGroupMember(Ped ped, int groupId) {
+	PED::GET_PED_AS_GROUP_MEMBER(ped, groupId);
+}
+
+void Api::givePedWeapon(Ped ped, Hash weaponHash, int ammo) {
+	WEAPON::GIVE_DELAYED_WEAPON_TO_PED(ped, weaponHash, ammo, true, 0);
+	WEAPON::SET_CURRENT_PED_WEAPON(ped, weaponHash, true, 0, false, false);
 }
 
 bool Api::isPaused() {

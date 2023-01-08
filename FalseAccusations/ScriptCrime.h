@@ -22,7 +22,7 @@ const Hash CRIMES[] = {
 	0x647D2A5A
 };
 
-class ScriptCrimeController
+class ScriptCrime
 {
 private:
 	Api api;
@@ -39,7 +39,7 @@ private:
 	bool tryToFalselyAccusePlayer();
 
 public:
-	ScriptCrimeController();
+	ScriptCrime();
 	Hash randomCrime();
 	char* getCrime(Hash crime);
 	void setDefaults();

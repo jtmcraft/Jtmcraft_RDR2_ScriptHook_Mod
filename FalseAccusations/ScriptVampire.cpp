@@ -11,7 +11,7 @@ bool ScriptVampire::isVampireOutOfRange() {
 }
 
 void ScriptVampire::spawnVampire() {
-	vampire = api.spawnHostilePedNearPlayer("CS_Vampire");
+	vampire = api.spawnRelativeToPlayer("CS_Vampire", 30, 0, 30);
 	okToSpawnVampire = false;
 }
 
