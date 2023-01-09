@@ -5,3 +5,6 @@ Pools.sln
 .vs/
 **/bin/
 **/tmp/
+RDR2_Notifications/
+RDR2_Notifications.sln
+
