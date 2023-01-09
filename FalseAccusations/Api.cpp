@@ -1,5 +1,7 @@
 #include "Api.h"
 
+using namespace std;
+
 Vector3 Api::getPlayerCoords() {
 	return getEntityCoords(getPlayerPed());
 }
@@ -81,6 +83,10 @@ Vector3 Api::getOffsetFromPlayerInWorldCoords(float offsetX, float offsetY, floa
 
 void Api::giveMoney() {
 	CASH::PLAYER_ADD_CASH(5000, 1);
+}
+
+void Api::addMoney(int pennies) {
+	CASH::PLAYER_ADD_CASH(pennies, 1);
 }
 
 bool Api::isPlayerInvincible() {
@@ -191,6 +197,10 @@ Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b) {
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
 
 	return spawned;
+}
+
+void Api::addMoneyLoot(Ped ped, int pennies) {
+	DECORATOR::DECOR_SET_INT(ped, "loot_money", pennies);
 }
 
 int Api::createGroup() {
@@ -336,6 +346,14 @@ void Api::notifyHeadShot() {
 	notificationRight("Head shot", "toast_awards_set_h", "awards_set_h_006", "COLOR_PURE_WHITE", 500);
 }
 
+void Api::notifyMoneyReward(int pennies) {
+	float dollars = (float)pennies / 100;
+	char text[500];
+
+	sprintf_s(text, "Reward $%.2f", dollars);
+	notificationRight(text, "menu_textures", "log_gang_bag", "COLOR_PURE_WHITE", 500);
+}
+
 void Api::toast(char* text) {
 	invoke<Void>(0xFA233F8FE190514C, createString(text));
 	UILOG::_0xE9990552DEC71600();
@@ -372,4 +390,8 @@ void Api::notificationTitled(char* title, char* subTitle, char* dict, char* icon
 	notificationTitledParam1.color = getHash(color);
 
 	UIUNK::_0x26E87218390E6729((Any*)&notificationTitledParam0, (Any*)&notificationTitledParam1, 1, 1);
+}
+
+void Api::notificationAlert(char* text) {
+	notificationTitled("Information", text, "menu_textures", "menu_icon_alert", "COLOR_PURE_WHITE", 3000);
 }

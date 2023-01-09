@@ -11,6 +11,7 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="script.cpp" />
+    <ClCompile Include="ScriptAttacker.cpp" />
     <ClCompile Include="ScriptAttackers.cpp" />
     <ClCompile Include="ScriptCrime.cpp" />
     <ClCompile Include="ScriptDataModel.cpp" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Api.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="script.h" />
+    <ClInclude Include="ScriptAttacker.h" />
     <ClInclude Include="ScriptAttackers.h" />
     <ClInclude Include="ScriptCrime.h" />
     <ClInclude Include="ScriptDataModel.h" />

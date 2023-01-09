@@ -28,6 +28,7 @@ public:
 	void incrementPlayerWantedLevel();
 	void reportCrime(Hash crime);
 	void giveMoney();
+	void addMoney(int pennies);
 	bool isPlayerInvincible();
 	void togglePlayerInvincible();
 	bool isPlayerOnMount();
@@ -62,6 +63,9 @@ public:
 	void notificationTopLeft(char* text, int duration);
 	void notificationRight(char* text, char* dict, char* icon, char* colour, int duration);
 	void notifyHeadShot();
+	void notifyMoneyReward(int pennies);
 	void toast(char* text);
 	void notificationTitled(char* title, char* subTitle, char* dict, char* icon, char* color, int duration);
+	void notificationAlert(char* text);
+	void addMoneyLoot(Ped ped, int pennies);
 };

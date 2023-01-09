@@ -12,6 +12,7 @@
     <ClCompile Include="ScriptVampire.cpp" />
     <ClCompile Include="ScriptDevMode.cpp" />
     <ClCompile Include="ScriptAttackers.cpp" />
+    <ClCompile Include="ScriptAttacker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="script.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="ScriptVampire.h" />
     <ClInclude Include="ScriptDevMode.h" />
     <ClInclude Include="ScriptAttackers.h" />
+    <ClInclude Include="ScriptAttacker.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">

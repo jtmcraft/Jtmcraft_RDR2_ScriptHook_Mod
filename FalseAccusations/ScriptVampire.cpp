@@ -32,28 +32,40 @@ void ScriptVampire::tick() {
 	gameHour = api.getGameHour();
 	bool isAlive = vampire != NULL && !api.isEntityDead(vampire);
 
-	if (isAlive) {
-		api.setWeather("FOG");
-	}
-	else {
-		if (vampire != NULL && api.detectHeadShot(vampire)) {
-			api.notifyHeadShot();
-		}
-		api.setWeather("SUNNY");
-
-		vampire = NULL;
-	}
-
 	if (gameHour > 5) {
 		if (isAlive) {
 			api.addExplosion(api.getEntityCoords(vampire));
 			api.setEntityHealth(vampire, 0);
+			WAIT(100);
+			api.notificationAlert("The vampire died of natural causes.");
 		}
 
 		vampire = NULL;
 		okToSpawnVampire = true;
 
 		return;
+	}
+
+	if (isAlive) {
+		api.setWeather("FOG");
+	}
+	else {
+		if (vampire != NULL) {
+			bool isHeadShot = api.detectHeadShot(vampire);
+			int reward = api.randInt(700, 1000);
+
+			api.setWeather("SUNNY");
+			vampire = NULL;
+
+			api.notificationTitled("Victory", "You defeated the vampire.", "honor_display", "honor_good", "COLOR_PURE_WHITE", 3000);
+			if (isHeadShot) {
+				api.notifyHeadShot();
+				api.addMoney(reward);
+				api.notifyMoneyReward(reward);
+			}
+
+			return;
+		}
 	}
 
 	if (isAlive && isVampireOutOfRange()) {
