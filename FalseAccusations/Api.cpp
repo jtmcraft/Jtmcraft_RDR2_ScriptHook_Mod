@@ -45,8 +45,8 @@ void Api::incrementPlayerWantedLevel() {
 	setPlayerWantedLevel(nextWantedLevel);
 }
 
-char* Api::createString(const char* text) {
-	return GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", _strdup(text));
+char* Api::createString(char* text) {
+	return GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", text);
 }
 
 int Api::randInt(int a, int b) {
@@ -57,43 +57,6 @@ float Api::randFloat(float a, float b) {
 	return GAMEPLAY::GET_RANDOM_FLOAT_IN_RANGE(a, b);
 }
 
-void Api::debugText(const char* text) {
-	UI::SET_TEXT_COLOR_RGBA(255, 128, 0, 0);
-	UI::SET_TEXT_SCALE(0.33, 0.33);
-	UI::DRAW_TEXT(createString(text), 0, 0);
-}
-
-void Api::displaySubTitle(const char* text) {
-	UILOG::_0xFA233F8FE190514C((Any*) createString(text));
-	UILOG::_0xE9990552DEC71600();
-	UILOG::_0xDFF0D417277B41F8();
-}
-
-void Api::playNotification() {
-	AUDIO::_0xCE5D0FFE83939AF1(-1, (Any*) "WEAPON_PURCHASE", (Any*) "HUD_AMMO_SHOP_SOUNDSET", true);
-}
-
-void Api::playInformational() {
-	AUDIO::_0xCE5D0FFE83939AF1(-1, (Any*) "BACK", (Any*) "HUD_FRONTEND_DEFAULT_SOUNDSET", 0);
-}
-
-void Api::toast(const char* text) {
-	displaySubTitle(text);
-}
-
-void Api::drawText(const char* text, float x, float y) {
-	UI::SET_TEXT_COLOR_RGBA(255, 128, 0, 255);
-	UI::SET_TEXT_SCALE(0.33, 0.33);
-	UI::DRAW_TEXT(createString(text), x, y);
-}
-
-void Api::drawRectangle(float x, float y, float width, float height) {
-	float fX = x + width / 2;
-	float fY = (y + height / 2);
-
-	GRAPHICS::DRAW_RECT(fX, fY, width, height, 0, 0, 0, 190, true, 0);
-}
-
 void Api::reportCrime(Hash crime) {
 	PURSUIT::_0xF60386770878A98F(getPlayer(), crime, 0, 0, true);
 }
@@ -101,6 +64,13 @@ void Api::reportCrime(Hash crime) {
 void Api::loadModel(Hash modelHash, bool b) {
 	STREAMING::REQUEST_MODEL(modelHash, false);
 	while (!STREAMING::HAS_MODEL_LOADED(modelHash)) {
+		WAIT(0);
+	}
+}
+
+void Api::loadTexture(char* dict) {
+	TEXTURE::REQUEST_STREAMED_TEXTURE_DICT(dict, false);
+	while (!TEXTURE::HAS_STREAMED_TEXTURE_DICT_LOADED(dict)) {
 		WAIT(0);
 	}
 }
@@ -150,7 +120,7 @@ void Api::setSnowCoverage(int coverage) {
 	GRAPHICS::_0xF02A9C330BBFC5C7(coverage);
 }
 
-void Api::setWeather(const char* weatherType) {
+void Api::setWeather(char* weatherType) {
 	GAMEPLAY::CLEAR_OVERRIDE_WEATHER();
 	GAMEPLAY::SET_WEATHER_TYPE(GAMEPLAY::GET_HASH_KEY(_strdup(weatherType)), 0, 1, 0, 0.0, 0);
 	GAMEPLAY::CLEAR_WEATHER_TYPE_PERSIST();
@@ -302,4 +272,104 @@ bool Api::detectHeadShot(Ped victim) {
 	PED::GET_PED_LAST_DAMAGE_BONE(victim, &bone);
 
 	return bone == 21030;
+}
+
+struct {
+	alignas(8) int duration;
+	alignas(8) int idk0;
+	alignas(8) int idk1;
+	alignas(8) int idk2;
+} notificationTopLeftParam0;
+
+struct {
+	alignas(8) int idk0;
+	alignas(8) const char* text;
+} notificationTopLeftParam1;
+
+void Api::notificationTopLeft(char* text, int duration) {
+	notificationTopLeftParam0.duration = duration;
+	notificationTopLeftParam0.idk0 = 0;
+	notificationTopLeftParam0.idk1 = 0;
+	notificationTopLeftParam0.idk2 = 0;
+
+	notificationTopLeftParam1.idk0 = 0;
+	notificationTopLeftParam1.text = createString(text);
+
+	UIUNK::_0x049D5C615BD38BAD((Any*)&notificationTopLeftParam0, (Any*)&notificationTopLeftParam1, 1);
+}
+
+struct {
+	alignas(8) int duration;
+	alignas(8) const char* dict;
+	alignas(8) const char* sound;
+	alignas(8) int idk0;
+} notificationRightParam0;
+
+struct {
+	alignas(8) int idk0;
+	alignas(8) const char* text;
+	alignas(8) const char* dict;
+	alignas(8) Hash icon;
+	alignas(8) int idk1;
+	alignas(8) Hash color;
+	alignas(8) int idk2;
+} notificationRightParam1;
+
+void Api::notificationRight(char* text, char* dict, char* icon, char* color, int duration) {
+	notificationRightParam0.duration = duration;
+	notificationRightParam0.dict = createString("Transaction_Feed_Sounds");
+	notificationRightParam0.sound = createString("Transaction_Positive");
+	notificationRightParam0.idk0 = 0;
+
+	notificationRightParam1.idk0 = 0;
+	notificationRightParam1.text = createString(text);
+	notificationRightParam1.dict = createString(dict);;
+	notificationRightParam1.icon = getHash(icon);
+	notificationRightParam1.idk1 = 1;
+	notificationRightParam1.color = getHash(color);
+	notificationRightParam1.idk2 = 0;
+
+	UIUNK::_0xB249EBCB30DD88E0((Any*)&notificationRightParam0, (Any*)&notificationRightParam1, true);
+}
+
+void Api::notifyHeadShot() {
+	notificationRight("Head shot", "toast_awards_set_h", "awards_set_h_006", "COLOR_PURE_WHITE", 500);
+}
+
+void Api::toast(char* text) {
+	invoke<Void>(0xFA233F8FE190514C, createString(text));
+	UILOG::_0xE9990552DEC71600();
+	UILOG::_0xDFF0D417277B41F8();
+}
+
+struct {
+	alignas(8) int duration;
+	alignas(8) int unk0 = 0;
+	alignas(8) int unk1 = 0;
+	alignas(8) int unk2 = 0;
+} notificationTitledParam0;
+
+struct {
+	alignas(8) int unk = 0;
+	alignas(8) const char* title;
+	alignas(8) const char* subtitle;
+	alignas(8) int unk2 = 0;
+	alignas(8) Hash iconDict;
+	alignas(8) Hash icon;
+	alignas(8) Hash color;
+	alignas(8) int unk3 = 0;
+} notificationTitledParam1;
+
+void Api::notificationTitled(char* title, char* subTitle, char* dict, char* icon, char* color, int duration) {
+	loadTexture(dict);
+
+	notificationTitledParam0.duration = duration;
+
+	notificationTitledParam1.icon = getHash(icon);
+	notificationTitledParam1.iconDict = getHash(dict);
+	notificationTitledParam1.title = createString(title);
+	notificationTitledParam1.subtitle = createString(subTitle);
+	notificationTitledParam1.color = getHash(color);
+
+	UIUNK::_0x26E87218390E6729((Any*)&notificationTitledParam0, (Any*)&notificationTitledParam1, 1, 1);
 }

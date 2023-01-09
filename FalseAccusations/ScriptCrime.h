@@ -34,7 +34,6 @@ private:
 	int chance;
 	chrono::steady_clock::time_point startAutoSave;
 	chrono::steady_clock::time_point startFalseAccusation;
-	void printInfo();
 	void handleFalseAccusation(double elapsedFalseAccusation, bool shouldSave);
 	bool tryToFalselyAccusePlayer();
 

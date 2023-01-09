@@ -37,7 +37,7 @@ void ScriptVampire::tick() {
 	}
 	else {
 		if (vampire != NULL && api.detectHeadShot(vampire)) {
-			api.toast("You scored a headshot against the vampire.");
+			api.notifyHeadShot();
 		}
 		api.setWeather("SUNNY");
 

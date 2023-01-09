@@ -99,18 +99,6 @@ void ScriptCrime::read() {
 	dataFile.close();
 }
 
-void ScriptCrime::printInfo() {
-	stringstream msg;
-	Vector3 coords = api.getPlayerCoords();
-	float heading = api.getPlayerHeading();
-
-	msg << "X: " << coords.x << endl << "Y: " << coords.y << endl << "Z: " << coords.z << endl << "H: " << heading
-		<< endl << "Wait: " << floor(timeToWait) << endl << "Elapsed: " << floor(timeElapsed) << endl << "Chance: " << chance;
-
-	api.drawRectangle(0.04, 0.04, 0.15, 0.2);
-	api.drawText(msg.str().c_str(), 0.05, 0.05);
-}
-
 bool ScriptCrime::tryToFalselyAccusePlayer() {
 	int roll = api.randInt(1, 100);
 	char msg[100];
@@ -120,7 +108,9 @@ bool ScriptCrime::tryToFalselyAccusePlayer() {
 
 	if (roll < chance) {
 		Hash crime = randomCrime();
-		api.toast((string("Someone falsely accused you of ").append(getCrime(crime)).append(".")).c_str());
+		char crimeStr[200];
+		sprintf_s(crimeStr, "Someone falsely accused you of %s.", getCrime(crime));
+		api.toast(crimeStr);
 		WAIT(2000);
 		api.reportCrime(crime);
 
@@ -152,7 +142,7 @@ void ScriptCrime::handleFalseAccusation(double elapsedFalseAccusation, bool shou
 }
 
 void ScriptCrime::tick() {
-	printInfo();
+	// printInfo();
 
 	bool shouldSave = false;
 	auto now = chrono::steady_clock::now();

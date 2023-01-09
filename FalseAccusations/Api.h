@@ -12,17 +12,14 @@ private:
 	Ped getPlayerPed();
 	Vector3 getOffsetFromPlayerInWorldCoords(float offsetX, float offsetY, float offsetZ);
 	void setPlayerWantedLevel(int wantedLevel);
-	char* createString(const char* text);
-	void displaySubTitle(const char* text);
-	void playNotification();
-	void playInformational();
 	void loadModel(Hash modelHash, bool b);
+	void loadTexture(char* dict);
 	Ped createPed(Hash skin, Vector3 location, bool onGround);
 
 public:
+	char* createString(char* text);
 	int randInt(int a, int b);
 	float randFloat(float a, float b);
-	void debugText(const char* text);
 	Vector3 getPlayerCoords();
 	Vector3 getEntityCoords(Entity entity);
 	float getPlayerHeading();
@@ -31,14 +28,11 @@ public:
 	void incrementPlayerWantedLevel();
 	void reportCrime(Hash crime);
 	void giveMoney();
-	void toast(const char* text);
-	void drawText(const char* text, float x, float y);
-	void drawRectangle(float x, float y, float width, float height);
 	bool isPlayerInvincible();
 	void togglePlayerInvincible();
 	bool isPlayerOnMount();
 	Ped getPlayerMount();
-	void setWeather(const char* weatherType);
+	void setWeather(char* weatherType);
 	void setSnowLevel(float level);
 	void setSnowCoverage(int coverage);
 	Hash getHash(char* key);
@@ -65,4 +59,9 @@ public:
 	void addSnowBlanket(int coverage);
 	void removeSnowBlanket(char* replacementWeather);
 	bool detectHeadShot(Ped victim);
+	void notificationTopLeft(char* text, int duration);
+	void notificationRight(char* text, char* dict, char* icon, char* colour, int duration);
+	void notifyHeadShot();
+	void toast(char* text);
+	void notificationTitled(char* title, char* subTitle, char* dict, char* icon, char* color, int duration);
 };
