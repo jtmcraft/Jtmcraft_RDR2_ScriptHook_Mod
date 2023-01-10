@@ -34,15 +34,19 @@ public:
 	void togglePlayerInvincible();
 	bool isPlayerOnMount();
 	Ped getPlayerMount();
+	void freezeWeather(bool frozen);
 	void setWeather(char* weatherType);
+	Hash getNextWeather();
+	void getWeatherTransition(Hash* weatherType1, Hash* weatherType2, float* percentWeather2);
+	void setWeatherTransition(Hash weatherType1, Hash weatherType2, float percentWeather2);
 	void setSnowLevel(float level);
 	void setSnowCoverage(int coverage);
 	Hash getHash(char* key);
 	Blip addBlip(Hash blipHash, Ped ped);
 	Vector3 findLocationRelativeToPlayer(float distance, float a, float b);
-	void addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords, char* blipStyle);
+	void addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords);
 	float groundAt(Vector3 location);
-	Ped spawnRelativeToPlayer(char* model, float distance, float a, float b);
+	Ped spawnRelativeToPlayer(char* model, float distance, float a, float b, bool withBlip);
 	int createGroup();
 	void setPedGroupMember(Ped ped, int groupId);
 	void setPedGroupLeader(Ped ped, int groupId);
@@ -69,4 +73,6 @@ public:
 	void notificationTitled(char* title, char* subTitle, char* dict, char* icon, char* color, int duration);
 	void notificationAlert(char* text);
 	void addMoneyLoot(Ped ped, int pennies);
+	void fadeOut();
+	void fadeIn();
 };

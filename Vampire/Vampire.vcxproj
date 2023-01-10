@@ -9,9 +9,11 @@
   <ItemGroup>
     <ClCompile Include="script.cpp" />
     <ClCompile Include="Vampire.cpp" />
+    <ClCompile Include="VampireWeather.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vampire.h" />
+    <ClInclude Include="VampireWeather.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{008e5a98-a0a1-42c7-8f81-a4cadd45b7ce}</ProjectGuid>

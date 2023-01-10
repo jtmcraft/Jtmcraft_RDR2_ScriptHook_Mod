@@ -48,7 +48,7 @@ void Api::incrementPlayerWantedLevel() {
 }
 
 char* Api::createString(char* text) {
-	return GAMEPLAY::CREATE_STRING(10, _strdup("LITERAL_STRING"), text);
+	return GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", text);
 }
 
 int Api::randInt(int a, int b) {
@@ -126,9 +126,25 @@ void Api::setSnowCoverage(int coverage) {
 	GRAPHICS::_0xF02A9C330BBFC5C7(coverage);
 }
 
+Hash Api::getNextWeather() {
+	return GAMEPLAY::_0x51021D36F62AAA83();
+}
+
+void Api::getWeatherTransition(Hash* weatherType1, Hash* weatherType2, float* percentWeather2) {
+	GAMEPLAY::_GET_WEATHER_TYPE_TRANSITION(weatherType1, weatherType2, percentWeather2);
+}
+
+void Api::setWeatherTransition(Hash weatherType1, Hash weatherType2, float percentWeather2) {
+	GAMEPLAY::_SET_WEATHER_TYPE_TRANSITION(weatherType1, weatherType2, percentWeather2, true);
+}
+
+void Api::freezeWeather(bool frozen) {
+	GAMEPLAY::FREEZE_WEATHER(frozen);
+}
+
 void Api::setWeather(char* weatherType) {
 	GAMEPLAY::CLEAR_OVERRIDE_WEATHER();
-	GAMEPLAY::SET_WEATHER_TYPE(GAMEPLAY::GET_HASH_KEY(_strdup(weatherType)), 0, 1, 0, 0.0, 0);
+	GAMEPLAY::SET_WEATHER_TYPE(GAMEPLAY::GET_HASH_KEY(weatherType), 0, 1, 0, 0.0, 0);
 	GAMEPLAY::CLEAR_WEATHER_TYPE_PERSIST();
 }
 
@@ -166,11 +182,10 @@ Blip Api::addBlip(Hash blipHash, Ped ped) {
 	return RADAR::_0x23F74C2FDA6E7C61(blipHash, ped);
 }
 
-void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords, char* blipStyle) {
+void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vector3 turnToCoords) {
 	PED::SET_PED_VISIBLE(ped, true);
 	AI::TASK_TURN_PED_TO_FACE_COORD(ped, turnToCoords.x, turnToCoords.y, turnToCoords.z, 0);
 	PED::SET_PED_RELATIONSHIP_GROUP_HASH(ped, getHash(relationship));
-	addBlip(getHash(blipStyle), ped);
 
 	if (isHostileToPlayer) {
 		AI::TASK_COMBAT_PED(ped, getPlayerPed(), 0, 16);
@@ -185,7 +200,7 @@ float Api::groundAt(Vector3 location) {
 	return z;
 }
 
-Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b) {
+Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b, bool withBlip) {
 	Vector3 playerLocation = getPlayerCoords();
 	Vector3 spawnLocation = findLocationRelativeToPlayer(distance, a, b);
 	Hash skin = getHash(model);
@@ -193,14 +208,18 @@ Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b) {
 	loadModel(skin, true);
 	Ped spawned = createPed(skin, spawnLocation, true);
 
-	addPedToWorld(spawned, _strdup("REL_CRIMINALS"), true, playerLocation, _strdup("BLIP_STYLE_ENEMY"));
+	addPedToWorld(spawned, "REL_CRIMINALS", true, playerLocation);
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
+
+	if (withBlip) {
+		addBlip(getHash("BLIP_STYLE_ENEMY"), spawned);
+	}
 
 	return spawned;
 }
 
 void Api::addMoneyLoot(Ped ped, int pennies) {
-	DECORATOR::DECOR_SET_INT(ped, _strdup("loot_money"), pennies);
+	DECORATOR::DECOR_SET_INT(ped, "loot_money", pennies);
 }
 
 int Api::createGroup() {
@@ -265,7 +284,7 @@ bool Api::isPedDeadOrDying(Ped ped) {
 }
 
 void Api::addSnowBlanket(int coverage) {
-	setWeather(_strdup("SNOW"));
+	setWeather("SNOW");
 	setSnowLevel(1);
 	setSnowCoverage(coverage);
 }
@@ -327,8 +346,8 @@ struct {
 
 void Api::notificationRight(char* text, char* dict, char* icon, char* color, int duration) {
 	notificationRightParam0.duration = duration;
-	notificationRightParam0.dict = createString(_strdup("Transaction_Feed_Sounds"));
-	notificationRightParam0.sound = createString(_strdup("Transaction_Positive"));
+	notificationRightParam0.dict = createString("Transaction_Feed_Sounds");
+	notificationRightParam0.sound = createString("Transaction_Positive");
 	notificationRightParam0.idk0 = 0;
 
 	notificationRightParam1.idk0 = 0;
@@ -343,7 +362,7 @@ void Api::notificationRight(char* text, char* dict, char* icon, char* color, int
 }
 
 void Api::notifyHeadShot() {
-	notificationRight(_strdup("Head shot"), _strdup("toast_awards_set_h"), _strdup("awards_set_h_006"), _strdup("COLOR_PURE_WHITE"), 500);
+	notificationRight("Head shot", "toast_awards_set_h", "awards_set_h_006", "COLOR_PURE_WHITE", 500);
 }
 
 void Api::notifyMoneyReward(int pennies) {
@@ -351,7 +370,7 @@ void Api::notifyMoneyReward(int pennies) {
 	char text[500];
 
 	sprintf_s(text, "Reward $%.2f", dollars);
-	notificationRight(text, _strdup("menu_textures"), _strdup("log_gang_bag"), _strdup("COLOR_PURE_WHITE"), 500);
+	notificationRight(text, "menu_textures", "log_gang_bag", "COLOR_PURE_WHITE", 500);
 }
 
 void Api::toast(char* text) {
@@ -393,5 +412,21 @@ void Api::notificationTitled(char* title, char* subTitle, char* dict, char* icon
 }
 
 void Api::notificationAlert(char* text) {
-	notificationTitled(_strdup("Information"), text, _strdup("menu_textures"), _strdup("menu_icon_alert"), _strdup("COLOR_PURE_WHITE"), 3000);
+	notificationTitled("Information", text, "menu_textures", "menu_icon_alert", "COLOR_PURE_WHITE", 3000);
+}
+
+void Api::fadeOut() {
+	CAM::DO_SCREEN_FADE_OUT(1000);
+	while (!CAM::IS_SCREEN_FADED_OUT()) {
+		WAIT(1);
+	}
+}
+
+void Api::fadeIn() {
+	if (CAM::IS_SCREEN_FADED_OUT()) {
+		CAM::DO_SCREEN_FADE_IN(1000);
+		while (!CAM::IS_SCREEN_FADED_IN()) {
+			WAIT(1);
+		}
+	}
 }
