@@ -2,15 +2,16 @@
 
 #include "Api.h"
 #include "keyboard.h"
+#include "script.h"
 
-class ScriptWeather
+class SnowBlanket
 {
 private:
 	Api api;
 	bool winterBlanket;
 
 public:
-	ScriptWeather();
+	SnowBlanket();
 	void addSnowBlanket(int coverage);
 	void removeSnowBlanket(char* replacementWeather);
 	void toggleWinterBlanket();

@@ -4,6 +4,7 @@
 #include <string>
 #include "../../inc/types.h"
 #include "../../inc/natives.h"
+#include "script.h"
 
 class Api
 {

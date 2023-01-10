@@ -8,18 +8,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="script.cpp" />
-    <ClCompile Include="ScriptCrime.cpp" />
-    <ClCompile Include="ScriptDataModel.cpp" />
+    <ClCompile Include="SnowBlanket.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScriptCrime.h" />
-    <ClInclude Include="ScriptDataModel.h" />
+    <ClInclude Include="SnowBlanket.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8D82F34A-1D64-465B-84B1-37F89AD3D20B}</ProjectGuid>
+    <ProjectGuid>{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>FalseAccusations</RootNamespace>
-    <ProjectName>FalseAccusations</ProjectName>
+    <ProjectName>SnowBlanket</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

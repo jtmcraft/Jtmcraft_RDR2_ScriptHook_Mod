@@ -7,19 +7,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DevMode.cpp" />
     <ClCompile Include="script.cpp" />
-    <ClCompile Include="ScriptCrime.cpp" />
-    <ClCompile Include="ScriptDataModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScriptCrime.h" />
-    <ClInclude Include="ScriptDataModel.h" />
+    <ClInclude Include="DevMode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8D82F34A-1D64-465B-84B1-37F89AD3D20B}</ProjectGuid>
+    <ProjectGuid>{36b804c8-ae24-49d6-ae95-a2e4fd9fecff}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>FalseAccusations</RootNamespace>
-    <ProjectName>FalseAccusations</ProjectName>
+    <RootNamespace>DevMode</RootNamespace>
+    <ProjectName>DevMode</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

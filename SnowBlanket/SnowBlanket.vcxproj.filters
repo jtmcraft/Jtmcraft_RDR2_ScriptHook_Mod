@@ -2,11 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="script.cpp" />
-    <ClCompile Include="ScriptCrime.cpp" />
-    <ClCompile Include="ScriptDataModel.cpp" />
+    <ClCompile Include="SnowBlanket.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScriptCrime.h" />
-    <ClInclude Include="ScriptDataModel.h" />
+    <ClInclude Include="SnowBlanket.h" />
   </ItemGroup>
 </Project>

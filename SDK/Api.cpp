@@ -48,7 +48,7 @@ void Api::incrementPlayerWantedLevel() {
 }
 
 char* Api::createString(char* text) {
-	return GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", text);
+	return GAMEPLAY::CREATE_STRING(10, _strdup("LITERAL_STRING"), text);
 }
 
 int Api::randInt(int a, int b) {
@@ -193,14 +193,14 @@ Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b) {
 	loadModel(skin, true);
 	Ped spawned = createPed(skin, spawnLocation, true);
 
-	addPedToWorld(spawned, "REL_CRIMINALS", true, playerLocation, "BLIP_STYLE_ENEMY");
+	addPedToWorld(spawned, _strdup("REL_CRIMINALS"), true, playerLocation, _strdup("BLIP_STYLE_ENEMY"));
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
 
 	return spawned;
 }
 
 void Api::addMoneyLoot(Ped ped, int pennies) {
-	DECORATOR::DECOR_SET_INT(ped, "loot_money", pennies);
+	DECORATOR::DECOR_SET_INT(ped, _strdup("loot_money"), pennies);
 }
 
 int Api::createGroup() {
@@ -265,7 +265,7 @@ bool Api::isPedDeadOrDying(Ped ped) {
 }
 
 void Api::addSnowBlanket(int coverage) {
-	setWeather("SNOW");
+	setWeather(_strdup("SNOW"));
 	setSnowLevel(1);
 	setSnowCoverage(coverage);
 }
@@ -327,8 +327,8 @@ struct {
 
 void Api::notificationRight(char* text, char* dict, char* icon, char* color, int duration) {
 	notificationRightParam0.duration = duration;
-	notificationRightParam0.dict = createString("Transaction_Feed_Sounds");
-	notificationRightParam0.sound = createString("Transaction_Positive");
+	notificationRightParam0.dict = createString(_strdup("Transaction_Feed_Sounds"));
+	notificationRightParam0.sound = createString(_strdup("Transaction_Positive"));
 	notificationRightParam0.idk0 = 0;
 
 	notificationRightParam1.idk0 = 0;
@@ -343,7 +343,7 @@ void Api::notificationRight(char* text, char* dict, char* icon, char* color, int
 }
 
 void Api::notifyHeadShot() {
-	notificationRight("Head shot", "toast_awards_set_h", "awards_set_h_006", "COLOR_PURE_WHITE", 500);
+	notificationRight(_strdup("Head shot"), _strdup("toast_awards_set_h"), _strdup("awards_set_h_006"), _strdup("COLOR_PURE_WHITE"), 500);
 }
 
 void Api::notifyMoneyReward(int pennies) {
@@ -351,7 +351,7 @@ void Api::notifyMoneyReward(int pennies) {
 	char text[500];
 
 	sprintf_s(text, "Reward $%.2f", dollars);
-	notificationRight(text, "menu_textures", "log_gang_bag", "COLOR_PURE_WHITE", 500);
+	notificationRight(text, _strdup("menu_textures"), _strdup("log_gang_bag"), _strdup("COLOR_PURE_WHITE"), 500);
 }
 
 void Api::toast(char* text) {
@@ -393,5 +393,5 @@ void Api::notificationTitled(char* title, char* subTitle, char* dict, char* icon
 }
 
 void Api::notificationAlert(char* text) {
-	notificationTitled("Information", text, "menu_textures", "menu_icon_alert", "COLOR_PURE_WHITE", 3000);
+	notificationTitled(_strdup("Information"), text, _strdup("menu_textures"), _strdup("menu_icon_alert"), _strdup("COLOR_PURE_WHITE"), 3000);
 }
