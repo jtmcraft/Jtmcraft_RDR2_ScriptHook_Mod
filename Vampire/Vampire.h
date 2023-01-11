@@ -11,14 +11,12 @@ class Vampire
 private:
 	Api api;
 	Ped vampire;
-	bool okToSpawnVampire;
 	VampireWeather weather;
+	bool vampireWasSpawned;
 
 	void spawnVampire();
-	bool isVampireOutOfRange();
 
 public:
 	Vampire();
 	void tick();
-	bool stillAlive();
 };

@@ -75,4 +75,5 @@ public:
 	void addMoneyLoot(Ped ped, int pennies);
 	void fadeOut();
 	void fadeIn();
+	void removeAllPickups(Hash pickup);
 };

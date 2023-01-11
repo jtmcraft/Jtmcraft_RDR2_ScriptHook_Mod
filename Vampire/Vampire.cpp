@@ -2,23 +2,16 @@
 
 Vampire::Vampire() {
 	api = Api();
-	vampire = NULL;
-	okToSpawnVampire = true;
+	vampire = 0;
 	weather = VampireWeather();
-}
-
-bool Vampire::isVampireOutOfRange() {
-	return api.distanceBetween(api.getEntityCoords(vampire), api.getPlayerCoords()) > 150;
+	vampireWasSpawned = false;
 }
 
 void Vampire::spawnVampire() {
 	vampire = api.spawnRelativeToPlayer("CS_Vampire", 30, 0, 30, false);
 	api.addMoneyLoot(vampire, api.randInt(1000, 2000));
-	okToSpawnVampire = false;
-}
-
-bool Vampire::stillAlive() {
-	return vampire != NULL && api.isEntityDead(vampire);
+	api.givePedWeapon(vampire, api.getHash("weapon_melee_knife_vampire"), 1);
+	vampireWasSpawned = true;
 }
 
 void Vampire::tick() {
@@ -41,10 +34,10 @@ void Vampire::tick() {
 	}
 
 	gameHour = api.getGameHour();
-	bool isAlive = vampire != NULL && !api.isEntityDead(vampire);
+	api.removeAllPickups(api.getHash("PICKUP_WEAPON_MELEE_KNIFE_VAMPIRE"));
 
-	if (gameHour > 5 && gameHour < 22) {
-		if (isAlive) {
+	if (gameHour == 6) {
+		if (vampire != 0 && !api.isPedDeadOrDying(vampire)) {
 			api.addExplosion(api.getEntityCoords(vampire));
 			api.setEntityHealth(vampire, 0);
 			WAIT(100);
@@ -52,41 +45,37 @@ void Vampire::tick() {
 			weather.fogOut();
 		}
 
-		vampire = NULL;
-		okToSpawnVampire = true;
+		vampire = 0;
+		vampireWasSpawned = false;
 
 		return;
 	}
 
-	if (!okToSpawnVampire && !isAlive) {
-		bool isHeadShot = api.detectHeadShot(vampire);
-		vampire = NULL;
-
-		api.notificationTitled("Victory", "You defeated the vampire.", "honor_display", "honor_good", "COLOR_PURE_WHITE", 3000);
-		if (isHeadShot) {
-			api.notifyHeadShot();
-		}
-
-		okToSpawnVampire = true;
-		weather.fogOut();
-
-		return;
-	}
-
-	if (isAlive && isVampireOutOfRange()) {
-		api.deletePed(vampire);
+	if (!vampireWasSpawned && gameHour == 0 && vampire == 0) {
 		spawnVampire();
 
 		return;
 	}
 
-	if (okToSpawnVampire) {
-		if (gameHour == 23 && !weather.isFoggy()) {
-			weather.fogIn();
+	if (gameHour < 6) {
+		if (vampire != 0 && api.isPedDeadOrDying(vampire)) {
+			bool isHeadShot = api.detectHeadShot(vampire);
+
+			api.notificationTitled("Victory", "You defeated the vampire.", "honor_display", "honor_good", "COLOR_PURE_WHITE", 3000);
+			if (isHeadShot) {
+				api.notifyHeadShot();
+			}
+
+			vampire = 0;
+			weather.fogOut();
 		}
 
-		if (gameHour == 0) {
-			spawnVampire();
-		}
+		return;
+	}
+
+	if (gameHour == 23 && !weather.isFoggy()) {
+		weather.fogIn();
+
+		return;
 	}
 }

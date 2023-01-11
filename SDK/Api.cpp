@@ -430,3 +430,7 @@ void Api::fadeIn() {
 		}
 	}
 }
+
+void Api::removeAllPickups(Hash pickup) {
+	OBJECT::REMOVE_ALL_PICKUPS_OF_TYPE(pickup);
+}
