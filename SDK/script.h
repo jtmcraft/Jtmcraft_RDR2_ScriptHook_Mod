@@ -6,18 +6,10 @@
 
 #pragma once
 
-<<<<<<< HEAD
 #include "inc\natives.h"
 #include "inc\types.h"
 #include "inc\enums.h"
 
 #include "inc\main.h"
-=======
-#include "..\..\inc\natives.h"
-#include "..\..\inc\types.h"
-#include "..\..\inc\enums.h"
-
-#include "..\..\inc\main.h"
->>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
 
 void ScriptMain();

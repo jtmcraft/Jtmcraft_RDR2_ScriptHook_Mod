@@ -7,19 +7,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="src\script.cpp" />
     <ClCompile Include="src\SnowBlanket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowBlanket.h" />
-=======
-    <ClCompile Include="script.cpp" />
-    <ClCompile Include="SnowBlanket.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SnowBlanket.h" />
->>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}</ProjectGuid>

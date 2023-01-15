@@ -7,7 +7,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="src\script.cpp" />
     <ClCompile Include="src\ScriptCrime.cpp" />
     <ClCompile Include="src\ScriptDataModel.cpp" />
@@ -17,15 +16,6 @@
     <ClInclude Include="src\ScriptCrime.h" />
     <ClInclude Include="src\ScriptDataModel.h" />
     <ClInclude Include="src\ScriptVigilantes.h" />
-=======
-    <ClCompile Include="script.cpp" />
-    <ClCompile Include="ScriptCrime.cpp" />
-    <ClCompile Include="ScriptDataModel.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ScriptCrime.h" />
-    <ClInclude Include="ScriptDataModel.h" />
->>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8D82F34A-1D64-465B-84B1-37F89AD3D20B}</ProjectGuid>
