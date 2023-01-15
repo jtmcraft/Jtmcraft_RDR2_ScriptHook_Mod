@@ -35,7 +35,15 @@ void DevMode::toggleInvinciblePlayer() {
 	}
 }
 
+void DevMode::spawnTestEnemy() {
+	api.spawnRelativeToPlayer("CS_crackpotRobot", 50, 0, 10, true);
+}
+
 void DevMode::tick() {
+	if (IsKeyJustUp(VK_KEY_K)) {
+		spawnTestEnemy();
+	}
+
 	if (IsKeyJustUp(VK_KEY_I)) {
 		savePlayerCoords();
 	}

@@ -3,6 +3,10 @@
 using namespace std;
 
 Api::Api() {
+	initAngles();
+}
+
+void Api::initAngles() {
 	float pi = (2 * acosf(0.0));
 
 	angles[0] = 0;
@@ -21,6 +25,10 @@ Api::Api() {
 	angles[13] = 5 * pi / 3;
 	angles[14] = 7 * pi / 4;
 	angles[15] = 11 * pi / 6;
+}
+
+void Api::initPostOffices() {
+	postOffices["Annesburg"] = { 2931.73, 1283.24, 44.6528 };
 }
 
 Vector3 Api::getPlayerCoords() {

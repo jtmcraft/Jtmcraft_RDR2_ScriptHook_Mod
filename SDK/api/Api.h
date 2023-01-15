@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <array>
+#include <unordered_map>
 #include <keyboard.h>
 #include "script.h"
 
@@ -12,6 +13,10 @@ class Api
 {
 private:
 	array<float, 16> angles;
+	unordered_map<char*, Vector3> postOffices;
+
+	void initAngles();
+	void initPostOffices();
 	Player getPlayer();
 	Ped getPlayerPed();
 	Vector3 getOffsetFromPlayerInWorldCoords(float offsetX, float offsetY, float offsetZ);

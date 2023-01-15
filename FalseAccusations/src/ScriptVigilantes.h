@@ -8,8 +8,9 @@ private:
 	Api api;
 	ScriptLogger logger;
 	bool alreadySpawned;
-	array<Ped, 32> peds;
+	array<Ped, 16> peds{};
 	void spawnVigilantes();
+	void clearSpawnedPeds(int distance);
 
 public:
 	ScriptVigilantes();

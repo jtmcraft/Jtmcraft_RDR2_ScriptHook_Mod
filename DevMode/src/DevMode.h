@@ -12,6 +12,7 @@ private:
 	void savePlayerCoords();
 	void giveMoney();
 	void toggleInvinciblePlayer();
+	void spawnTestEnemy();
 
 public:
 	DevMode();
