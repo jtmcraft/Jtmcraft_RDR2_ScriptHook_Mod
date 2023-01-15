@@ -5,6 +5,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\main.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\natives.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\types.h" />
+<<<<<<< HEAD
     <ClInclude Include="$(MSBuildThisFileDirectory)api\Api.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)keyboard.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)script.h" />
@@ -15,5 +16,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)keyboard.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)api\ScriptLogger.cpp" />
+=======
+    <ClInclude Include="$(MSBuildThisFileDirectory)Api.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)keyboard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)script.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScriptLogger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Api.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)keyboard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScriptLogger.cpp" />
+>>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
   </ItemGroup>
 </Project>

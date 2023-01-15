@@ -7,6 +7,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="src\script.cpp" />
     <ClCompile Include="src\Vampire.cpp" />
     <ClCompile Include="src\VampireWeather.cpp" />
@@ -14,6 +15,15 @@
   <ItemGroup>
     <ClInclude Include="src\Vampire.h" />
     <ClInclude Include="src\VampireWeather.h" />
+=======
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="Vampire.cpp" />
+    <ClCompile Include="VampireWeather.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vampire.h" />
+    <ClInclude Include="VampireWeather.h" />
+>>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{008e5a98-a0a1-42c7-8f81-a4cadd45b7ce}</ProjectGuid>

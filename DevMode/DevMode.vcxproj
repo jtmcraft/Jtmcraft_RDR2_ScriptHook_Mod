@@ -7,11 +7,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="src\DevMode.cpp" />
     <ClCompile Include="src\script.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DevMode.h" />
+=======
+    <ClCompile Include="DevMode.cpp" />
+    <ClCompile Include="script.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DevMode.h" />
+>>>>>>> 6758477dd5728274b0ce9e466441bd054bcd635a
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{36b804c8-ae24-49d6-ae95-a2e4fd9fecff}</ProjectGuid>
