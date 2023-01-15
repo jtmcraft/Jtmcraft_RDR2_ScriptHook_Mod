@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{e85d1379-88fa-4b17-b399-d8b78ed624f8}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)api\Api.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)keyboard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)script.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\enums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\main.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\natives.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\types.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)api\ScriptLogger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)api\Api.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)keyboard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)api\ScriptLogger.cpp" />
+  </ItemGroup>
+</Project>

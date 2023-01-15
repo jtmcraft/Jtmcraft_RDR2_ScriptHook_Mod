@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\script.cpp" />
+    <ClCompile Include="src\Vampire.cpp" />
+    <ClCompile Include="src\VampireWeather.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Vampire.h" />
+    <ClInclude Include="src\VampireWeather.h" />
+  </ItemGroup>
+</Project>

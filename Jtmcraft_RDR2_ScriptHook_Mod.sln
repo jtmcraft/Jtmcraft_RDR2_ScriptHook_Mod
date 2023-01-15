@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FalseAccusations", "FalseAccusations\FalseAccusations.vcxproj", "{8D82F34A-1D64-465B-84B1-37F89AD3D20B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnowBlanket", "SnowBlanket\SnowBlanket.vcxproj", "{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDK", "SDK\SDK.vcxitems", "{E85D1379-88FA-4B17-B399-D8B78ED624F8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DevMode", "DevMode\DevMode.vcxproj", "{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vampire", "Vampire\Vampire.vcxproj", "{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Debug|x64.ActiveCfg = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Debug|x64.Build.0 = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Debug|x86.ActiveCfg = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Debug|x86.Build.0 = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Release|x64.ActiveCfg = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Release|x64.Build.0 = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Release|x86.ActiveCfg = Release|x64
+		{8D82F34A-1D64-465B-84B1-37F89AD3D20B}.Release|x86.Build.0 = Release|x64
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Debug|x64.ActiveCfg = Release|x64
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Debug|x64.Build.0 = Release|x64
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Debug|x86.ActiveCfg = Debug|Win32
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Debug|x86.Build.0 = Debug|Win32
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Release|x64.ActiveCfg = Release|x64
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Release|x64.Build.0 = Release|x64
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Release|x86.ActiveCfg = Release|Win32
+		{A99A5913-B1C0-43A3-B0AD-53634B2BD9DA}.Release|x86.Build.0 = Release|Win32
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Debug|x64.ActiveCfg = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Debug|x64.Build.0 = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Debug|x86.ActiveCfg = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Debug|x86.Build.0 = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Release|x64.ActiveCfg = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Release|x64.Build.0 = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Release|x86.ActiveCfg = Release|x64
+		{36B804C8-AE24-49D6-AE95-A2E4FD9FECFF}.Release|x86.Build.0 = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Debug|x64.ActiveCfg = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Debug|x64.Build.0 = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Debug|x86.ActiveCfg = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Debug|x86.Build.0 = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Release|x64.ActiveCfg = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Release|x64.Build.0 = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Release|x86.ActiveCfg = Release|x64
+		{008E5A98-A0A1-42C7-8F81-A4CADD45B7CE}.Release|x86.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BFD3B51-0AA4-4059-BF86-8D8A4C1C18DE}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SDK\SDK.vcxitems*{008e5a98-a0a1-42c7-8f81-a4cadd45b7ce}*SharedItemsImports = 4
+		SDK\SDK.vcxitems*{36b804c8-ae24-49d6-ae95-a2e4fd9fecff}*SharedItemsImports = 4
+		SDK\SDK.vcxitems*{8d82f34a-1d64-465b-84b1-37f89ad3d20b}*SharedItemsImports = 4
+		SDK\SDK.vcxitems*{a99a5913-b1c0-43a3-b0ad-53634b2bd9da}*SharedItemsImports = 4
+		SDK\SDK.vcxitems*{e85d1379-88fa-4b17-b399-d8b78ed624f8}*SharedItemsImports = 9
+	EndGlobalSection
+EndGlobal
