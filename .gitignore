@@ -1,11 +1,4 @@
-x64/
-NativeTrainer/
-NativeTrainer.sln
-Pools/
-Pools.sln
 .vs/
 **/bin/
 **/tmp/
-RDR2_Notifications/
-RDR2_Notifications.sln
 SDK/lib
