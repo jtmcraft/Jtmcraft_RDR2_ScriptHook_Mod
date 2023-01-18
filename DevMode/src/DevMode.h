@@ -9,6 +9,7 @@ class DevMode
 private:
 	Api api;
 	ScriptLogger logger;
+	bool isInvincible;
 	void savePlayerCoords();
 	void giveMoney();
 	void toggleInvinciblePlayer();

@@ -34,6 +34,6 @@ void SnowBlanket::tick() {
 	}
 
 	if (winterBlanket) {
-		api.setWeather(_strdup("SNOWLIGHT"));
+		api.setWeather("SNOWLIGHT");
 	}
 }

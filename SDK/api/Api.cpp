@@ -118,16 +118,15 @@ void Api::addMoney(int pennies) {
 	CASH::PLAYER_ADD_CASH(pennies, 1);
 }
 
-bool Api::isPlayerInvincible() {
-	return PLAYER::GET_PLAYER_INVINCIBLE(getPlayer());
+Ped Api::getMountOwnedByPlayer() {
+	return PLAYER::_0xF49F14462F0AE27C(getPlayer());
 }
 
-void Api::togglePlayerInvincible() {
-	bool isInvincible = isPlayerInvincible();
-
-	PLAYER::SET_PLAYER_INVINCIBLE(getPlayer(), !isInvincible);
+void Api::setPlayerInvincible(bool isInvincible) {
+	PLAYER::SET_PLAYER_INVINCIBLE(getPlayer(), isInvincible);
+	ENTITY::SET_ENTITY_INVINCIBLE(getMountOwnedByPlayer(), isInvincible);
 	if (isPlayerOnMount()) {
-		ENTITY::SET_ENTITY_INVINCIBLE(getPlayerMount(), !isInvincible);
+		ENTITY::SET_ENTITY_INVINCIBLE(getPlayerMount(), isInvincible);
 	}
 }
 
@@ -226,6 +225,14 @@ Ped Api::createPed(Hash model, Vector3 spawnLocation, bool onGround) {
 	return created;
 }
 
+bool Api::hasBlip(Entity entity) {
+	return RADAR::_0x9FA00E2FC134A9D0(entity);
+}
+
+void Api::enemyBlip(Ped ped) {
+	addBlip(getHash("BLIP_STYLE_ENEMY"), ped);
+}
+
 Blip Api::addBlip(Hash blipHash, Ped ped) {
 	return RADAR::_0x23F74C2FDA6E7C61(blipHash, ped);
 }
@@ -236,8 +243,20 @@ void Api::addPedToWorld(Ped ped, char* relationship, bool isHostileToPlayer, Vec
 	PED::SET_PED_RELATIONSHIP_GROUP_HASH(ped, getHash(relationship));
 
 	if (isHostileToPlayer) {
-		AI::TASK_COMBAT_PED(ped, getPlayerPed(), 0, 16);
+		taskAttackPlayer(ped);
 	}
+}
+
+void Api::taskAttackPlayer(Ped ped) {
+	AI::TASK_COMBAT_PED(ped, getPlayerPed(), 0, 16);
+}
+
+void Api::taskWanderInArea(Ped ped, float x, float y, float z, float radius, float minimalLength, float timeBetween) {
+	AI::TASK_WANDER_IN_AREA(ped, x, y, z, radius, minimalLength, timeBetween, false);
+}
+
+void Api::taskWanderInArea(Ped ped, float x, float y, float z) {
+	taskWanderInArea(ped, x, y, z, 200, 10, 10);
 }
 
 float Api::groundAt(Vector3 location) {
@@ -248,23 +267,23 @@ float Api::groundAt(Vector3 location) {
 	return z;
 }
 
-Ped Api::spawnPedAt(char* model, Vector3 spawnCoords, Vector3 turnToCoords, bool withBlip) {
+Ped Api::spawnPedAt(char* model, Vector3 spawnCoords, Vector3 turnToCoords, bool withBlip, bool hostileToPlayer) {
 	Hash skin = getHash(model);
 
 	loadModel(skin, true);
 	Ped spawned = createPed(skin, spawnCoords, true);
-	addPedToWorld(spawned, "REL_CRIMINALS", true, turnToCoords);
+	addPedToWorld(spawned, "REL_CRIMINALS", hostileToPlayer, turnToCoords);
 	STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(skin);
 
 	if (withBlip) {
-		addBlip(getHash("BLIP_STYLE_ENEMY"), spawned);
+		enemyBlip(spawned);
 	}
 
 	return spawned;
 }
 
-Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b, bool withBlip) {
-	return spawnPedAt(model, findLocationInFrontOfPlayer(distance, a, b), getPlayerCoords(), withBlip);
+Ped Api::spawnRelativeToPlayer(char* model, float distance, float a, float b, bool withBlip, bool hostileToPlayer) {
+	return spawnPedAt(model, findLocationInFrontOfPlayer(distance, a, b), getPlayerCoords(), withBlip, hostileToPlayer);
 }
 
 void Api::addMoneyLoot(Ped ped, int pennies) {
@@ -281,6 +300,18 @@ void Api::setPedGroupLeader(Ped ped, int groupId) {
 
 void Api::setPedGroupMember(Ped ped, int groupId) {
 	PED::GET_PED_AS_GROUP_MEMBER(ped, groupId);
+}
+
+Hash Api::repeaterCarbine() {
+	return getHash("weapon_repeater_carbine");
+}
+
+Hash Api::cattlemanRevolver() {
+	return getHash("weapon_revolver_cattleman");
+}
+
+Hash Api::vampireKnife() {
+	return getHash("weapon_melee_knife_vampire");
 }
 
 void Api::givePedWeapon(Ped ped, Hash weaponHash, int ammo) {
@@ -410,16 +441,12 @@ void Api::notificationRight(char* text, char* dict, char* icon, char* color, int
 	UIUNK::_0xB249EBCB30DD88E0((Any*)&notificationRightParam0, (Any*)&notificationRightParam1, true);
 }
 
-void Api::notifyHeadShot() {
-	notificationRight("Head shot", "toast_awards_set_h", "awards_set_h_006", "COLOR_PURE_WHITE", 500);
+void Api::toastRight(char* text, char* dict, char* icon) {
+	notificationRight(text, dict, icon, "COLOR_PURE_WHITE", 1000);
 }
 
-void Api::notifyMoneyReward(int pennies) {
-	float dollars = (float)pennies / 100;
-	char text[500];
-
-	sprintf_s(text, "Reward $%.2f", dollars);
-	notificationRight(text, "menu_textures", "log_gang_bag", "COLOR_PURE_WHITE", 500);
+void Api::notifyHeadShot() {
+	toastRight("Head shot", "toast_awards_set_h", "awards_set_h_006");
 }
 
 void Api::toast(char* text) {

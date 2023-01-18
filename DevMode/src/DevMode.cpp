@@ -4,6 +4,7 @@ using namespace std;
 
 DevMode::DevMode() {
 	api = Api();
+	isInvincible = false;
 }
 
 void DevMode::setLogger(ScriptLogger logger) {
@@ -26,8 +27,10 @@ void DevMode::giveMoney() {
 }
 
 void DevMode::toggleInvinciblePlayer() {
-	api.togglePlayerInvincible();
-	if (api.isPlayerInvincible()) {
+	isInvincible = !isInvincible;
+	api.setPlayerInvincible(isInvincible);
+
+	if (isInvincible) {
 		api.toast("You are now invincible.");
 	}
 	else {
@@ -36,7 +39,7 @@ void DevMode::toggleInvinciblePlayer() {
 }
 
 void DevMode::spawnTestEnemy() {
-	api.spawnRelativeToPlayer("CS_crackpotRobot", 50, 0, 10, true);
+	api.spawnRelativeToPlayer("CS_crackpotRobot", 50, 0, 10, true, true);
 }
 
 void DevMode::tick() {

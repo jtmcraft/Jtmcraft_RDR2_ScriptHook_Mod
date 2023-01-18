@@ -8,9 +8,9 @@ Vampire::Vampire() {
 }
 
 void Vampire::spawnVampire() {
-	vampire = api.spawnRelativeToPlayer("CS_Vampire", 30, 0, 30, false);
+	vampire = api.spawnRelativeToPlayer("CS_Vampire", 30, 0, 30, false, true);
 	api.addMoneyLoot(vampire, api.randInt(1000, 2000));
-	api.givePedWeapon(vampire, api.getHash("weapon_melee_knife_vampire"), 1);
+	api.givePedWeapon(vampire, api.vampireKnife(), 1);
 	vampireWasSpawned = true;
 }
 
