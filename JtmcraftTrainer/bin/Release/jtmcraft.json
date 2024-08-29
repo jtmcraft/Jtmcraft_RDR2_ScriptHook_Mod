@@ -1,0 +1,114 @@
+{
+  "jtmcraft:menu_items": {
+    "bright_lantern": true,
+    "cinematic_test": true,
+    "debug_screen": true,
+    "false_accusations": true,
+    "female_horse": true,
+    "hat_tracker": true,
+    "headshot_tracker": true,
+    "max_horse_stats": true,
+    "night_light": true,
+    "rainbow_lantern": true,
+    "refill_ammo": true,
+    "refill_inventory": true
+  },
+  "jtmcraft:console": true,
+  "jtmcraft:show_location": {
+    "start_with_on": true,
+    "show_position_vector": true,
+    "show_camera_pointing_at": true
+  },
+  "jtmcraft:cheats": {
+    "ammo": {
+      "infinite": false,
+      "refill_amount": 500,
+      "refillable_types": [
+        "AMMO_22",
+        "AMMO_ARROW",
+        "AMMO_ARROW_DYNAMITE",
+        "AMMO_ARROW_FIRE",
+        "AMMO_ARROW_IMPROVED",
+        "AMMO_ARROW_POISON",
+        "AMMO_ARROW_SMALL_GAME",
+        "AMMO_DYNAMITE",
+        "AMMO_MOLOTOV",
+        "AMMO_PISTOL",
+        "AMMO_PISTOL_EXPRESS",
+        "AMMO_PISTOL_EXPRESS_EXPLOSIVE",
+        "AMMO_PISTOL_HIGH_VELOCITY",
+        "AMMO_PISTOL_SPLIT_POINT",
+        "AMMO_REPEATER",
+        "AMMO_REPEATER_EXPRESS",
+        "AMMO_REPEATER_EXPRESS_EXPLOSIVE",
+        "AMMO_REPEATER_HIGH_VELOCITY",
+        "AMMO_REPEATER_SPLIT_POINT",
+        "AMMO_REVOLVER",
+        "AMMO_REVOLVER_EXPRESS",
+        "AMMO_REVOLVER_EXPRESS_EXPLOSIVE",
+        "AMMO_REVOLVER_HIGH_VELOCITY",
+        "AMMO_REVOLVER_SPLIT_POINT",
+        "AMMO_RIFLE",
+        "AMMO_RIFLE_ELEPHANT",
+        "AMMO_RIFLE_EXPRESS",
+        "AMMO_RIFLE_EXPRESS_EXPLOSIVE",
+        "AMMO_RIFLE_HIGH_VELOCITY",
+        "AMMO_RIFLE_SPLIT_POINT",
+        "AMMO_SHOTGUN",
+        "AMMO_SHOTGUN_BUCKSHOT_INCENDIARY",
+        "AMMO_SHOTGUN_SLUG",
+        "AMMO_SHOTGUN_SLUG_EXPLOSIVE",
+        "AMMO_THROWING_KNIVES",
+        "AMMO_TOMAHAWK"
+      ]
+    },
+    "provisions": {
+      "amount": 99,
+      "names": [
+        "CONSUMABLE_CHEESE_WEDGE",
+        "CONSUMABLE_BAKED_BEANS_CAN",
+        "CONSUMABLE_CARROT",
+        "CONSUMABLE_BIG_GAME_MEAT_THYME_COOKED",
+        "CONSUMABLE_BIG_GAME_MEAT_OREGANO_COOKED",
+        "CONSUMABLE_BIG_GAME_MEAT_WILD_MINT_COOKED",
+        "CONSUMABLE_SPECIAL_MEDICINE_CRAFTED",
+        "CONSUMABLE_SPECIAL_SNAKE_OIL_CRAFTED",
+        "CONSUMABLE_HORSE_REVIVER"
+      ]
+    }
+  },
+  "jtmcraft:night_light": {
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    }
+  },
+  "jtmcraft:player_lantern": {
+    "intensity": {
+      "high": 1000.0,
+      "default": 100.0
+    },
+    "color": {
+      "red": 253,
+      "green": 127,
+      "blue": 57
+    },
+    "rainbow": {
+      "delay_ms": 5,
+      "saturation": 0.9,
+      "brightness": 0.1
+    }
+  },
+  "jtmcraft:rampage": {
+    "interval_ms": 5000,
+    "threshold": 4
+  },
+  "jtmcraft:false_accusations": {
+    "interval_gs": 3600,
+    "initial_value": 0.005,
+    "rate": 0.2,
+    "coefficient": 7.5,
+    "max_bounty_pennies": 50000
+  }
+}

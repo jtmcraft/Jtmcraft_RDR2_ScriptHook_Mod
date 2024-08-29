@@ -1,0 +1,163 @@
+{
+  "intro_cinematic": {
+    "music": "MRY3_START_MUSIC",
+    "cameras": [
+      {
+        "order": 1,
+        "start_position": {
+          "x": 1259.76,
+          "y": -1265.02,
+          "z": 79.20
+        },
+        "point_cam_at": {
+          "x": 1341.49,
+          "y": -1368.60,
+          "z": 81.52
+        },
+        "rotate_instead_of_point": false,
+        "end_position": {
+          "x": 1362.18,
+          "y": -1318.53,
+          "z": 79.20
+        },
+        "text": "Welcome to Rhodes",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      },
+      {
+        "order": 2,
+        "start_position": {
+          "x": 2615.72,
+          "y": -1262.04,
+          "z": 53.12
+        },
+        "point_cam_at": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 90.0
+        },
+        "rotate_instead_of_point": true,
+        "end_position": {
+          "x": 2610.23,
+          "y": -1137.47,
+          "z": 53.12
+        },
+        "text": "Welcome to Saint Denis",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      },
+      {
+        "order": 3,
+        "start_position": {
+          "x": 2513.85,
+          "y": 816.91,
+          "z": 86.17
+        },
+        "point_cam_at": {
+          "x": 0,
+          "y": 0,
+          "z": 21
+        },
+        "rotate_instead_of_point": true,
+        "end_position": {
+          "x": 2559.28,
+          "y": 798.94,
+          "z": 78.69
+        },
+        "text": "Welcome to Roanoke Ridge",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      },
+      {
+        "order": 4,
+        "start_position": {
+          "x": -1292.40,
+          "y": 2499.31,
+          "z": 334.32
+        },
+        "point_cam_at": {
+          "x": -1353.38,
+          "y": 2424.04,
+          "z": 307.12
+        },
+        "rotate_instead_of_point": false,
+        "end_position": {
+          "x": -1350.91,
+          "y": 2419.19,
+          "z": 308.82
+        },
+        "text": "Welcome to Colter",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      },
+      {
+        "order": 5,
+        "start_position": {
+          "x": -5870.95,
+          "y": -3245.26,
+          "z": 8.57
+        },
+        "point_cam_at": {
+          "x": -5992.37,
+          "y": -3230.81,
+          "z": -18.31
+        },
+        "rotate_instead_of_point": false,
+        "end_position": {
+          "x": -6005.03,
+          "y": -3268.84,
+          "z": -18.31
+        },
+        "text": "Welcome to New Austin",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      },
+      {
+        "order": 6,
+        "start_position": {
+          "x": -358.33,
+          "y": 782.59,
+          "z": 118.59
+        },
+        "point_cam_at": {
+          "x": -232.48,
+          "y": 800.04,
+          "z": 134.13
+        },
+        "rotate_instead_of_point": false,
+        "end_position": {
+          "x": -252.84,
+          "y": 793.37,
+          "z": 118.59
+        },
+        "text": "Welcome to Valentine",
+        "time_of_day": {
+          "hour": 12,
+          "minute": 0,
+          "second": 0
+        },
+        "weather": "SUNNY"
+      }
+    ]    
+  }
+}
