@@ -7,7 +7,7 @@
 #include "logger.h"
 #include "math.h"
 #include "../json.h"
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 script_camera create_script_camera(const float start_x, const float start_y, const float start_z,
                                    const float point_x, const float point_y, const float point_z,
@@ -166,7 +166,7 @@ void camera_util::play_cinematic(const std::string& cinematic_name) {
 
 Vector3 camera_util::pointing_at(const Vector3& position, const float distance) {
     const Vector3 camera_rotation = CAM::GET_GAMEPLAY_CAM_ROT(2);
-    const Vector3 direction = math::rotation_to_direction_unit_vector(camera_rotation);
+    const Vector3 direction = math_util::rotation_to_direction_unit_vector(camera_rotation);
     
     return {
         position.x + direction.x * distance,

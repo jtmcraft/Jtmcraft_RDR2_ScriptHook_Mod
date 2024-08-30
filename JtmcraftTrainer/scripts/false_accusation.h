@@ -1,15 +1,15 @@
 ﻿#pragma once
 
 #include "timed_script.h"
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 class false_accusations final : public timed_script
 {
 public:
-    float calculate_chance() const;
-    bool should_falsely_accuse_player() const;
+    [[nodiscard]] float calculate_chance() const;
+    [[nodiscard]] bool should_falsely_accuse_player() const;
     void update_count_value();
-    bool is_max_updates_exceeded() const;
+    [[nodiscard]] bool is_max_updates_exceeded() const;
     void reset_values();
     static void notify_player_of_false_accusation(const Hash& crime);
 

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 struct ui_rectangle
 {

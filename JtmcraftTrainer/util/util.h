@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 namespace util {
     Hash get_hash(const std::string& key);

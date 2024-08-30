@@ -15,7 +15,7 @@ class menu_item_night_light final : public MenuItemSwitchable
     void OnFrame() override {
         if (GetState()) {
             constexpr Vector3 offset_vector = {1.0f, 1.0f, 2.0f};
-            const Vector3 night_light_coords = math::forward_vector(PLAYER::PLAYER_PED_ID(), offset_vector, false);
+            const Vector3 night_light_coords = math_util::forward_vector(PLAYER::PLAYER_PED_ID(), offset_vector, false);
 
             graphics_util::draw_light(night_light_coords, ui_color::white_opaque, 20.0f, 10.0f);
         }

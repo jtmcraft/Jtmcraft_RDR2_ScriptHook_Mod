@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 int entity_util::get_last_damage_bone(const Ped ped) {
     int bone;

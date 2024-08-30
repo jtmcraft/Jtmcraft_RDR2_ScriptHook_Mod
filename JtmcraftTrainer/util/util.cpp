@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 Hash util::get_hash(const std::string& key) {
     return GAMEPLAY::GET_HASH_KEY(const_cast<char*>(key.c_str()));

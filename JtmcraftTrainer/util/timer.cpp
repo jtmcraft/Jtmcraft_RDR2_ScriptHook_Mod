@@ -1,6 +1,6 @@
 ﻿#include "timer.h"
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 real_timer::real_timer() {
     restart();

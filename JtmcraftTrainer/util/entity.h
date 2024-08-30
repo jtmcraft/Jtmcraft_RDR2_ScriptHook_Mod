@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 namespace entity_util {
     int get_last_damage_bone(Ped ped);

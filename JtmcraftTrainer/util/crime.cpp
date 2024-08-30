@@ -1,6 +1,6 @@
 ﻿#include "crime.h"
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 Hash crime::random_crime() {
     const int dim = static_cast<int>(crime_list.size()) - 1;

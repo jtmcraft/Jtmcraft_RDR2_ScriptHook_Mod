@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "util.h"
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 #include "../data/global_values.h"
 
 const ui_color ui_color::black_opaque = { 0, 0, 0, 255 };

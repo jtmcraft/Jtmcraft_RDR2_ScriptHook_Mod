@@ -2,12 +2,10 @@
 
 #include <sstream>
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 #include "../data/configuration.h"
 #include "../util/camera_util.h"
-#include "../util/entity.h"
 #include "../util/graphics.h"
-#include "../util/math.h"
 #include "../util/util.h"
 
 void debug_screen::show_background(const bool show_position_vector, const bool show_camera_pointing_at) {

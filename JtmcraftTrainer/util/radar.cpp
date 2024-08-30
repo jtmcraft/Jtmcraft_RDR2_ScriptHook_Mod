@@ -1,7 +1,7 @@
 ﻿#include "radar.h"
 
 #include "util.h"
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 Blip radar_util::add_blip_at_coords(Hash blip_hash, const float scale, const std::string& blip_name, const Vector3& blip_coords) {
     const Any created_blip = RADAR::_0x554D9D53F696D002(1664425300, 0, 0, 0);

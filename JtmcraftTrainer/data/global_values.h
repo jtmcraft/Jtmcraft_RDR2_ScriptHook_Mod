@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 class global_values
 {
@@ -21,9 +21,9 @@ public:
         return instance;
     }
 
-    int get_headshots() const;
+    [[nodiscard]] int get_headshots() const;
     void increment_headshots();
     void set_headshots(int headshots);
-    float get_screen_width() const;
-    float get_screen_height() const;
+    [[nodiscard]] float get_screen_width() const;
+    [[nodiscard]] float get_screen_height() const;
 };

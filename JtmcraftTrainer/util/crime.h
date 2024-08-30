@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../../../inc/types.h"
+#include "../../inc/types.h"
 
 namespace crime {
     const std::vector<Hash> crime_list = {

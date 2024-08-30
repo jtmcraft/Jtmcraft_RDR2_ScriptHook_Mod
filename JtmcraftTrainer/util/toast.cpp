@@ -1,7 +1,7 @@
 ﻿#include "toast.h"
 
 #include "util.h"
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 struct ui_feed_parameters0
 {

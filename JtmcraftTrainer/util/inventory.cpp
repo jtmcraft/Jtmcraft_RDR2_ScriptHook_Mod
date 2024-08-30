@@ -1,7 +1,7 @@
 ﻿#include "inventory.h"
 
 #include "graphics.h"
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 
 namespace player_inventory {
     inventory_guid create_new_guid() {

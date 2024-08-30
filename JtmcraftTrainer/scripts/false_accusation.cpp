@@ -1,10 +1,9 @@
 ﻿#include "false_accusation.h"
 
-#include <iostream>
 #include <sstream>
 #include <string>
 
-#include "../../../inc/natives.h"
+#include "../../inc/natives.h"
 #include "../data/configuration.h"
 #include "../util/crime.h"
 #include "../util/logger.h"
